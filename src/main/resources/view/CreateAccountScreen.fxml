@@ -3,38 +3,38 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="pane" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateAccountController">
+<AnchorPane fx:id="rootPane" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateAccountController">
    <children>
       <Label fx:id="firstNameLabel" layoutX="86.0" layoutY="30.0" text="First Name:">
          <graphic>
-            <TextField />
+            <TextField fx:id="firstNameTextField" promptText="First Name" />
          </graphic>
       </Label>
       <Label fx:id="lastNameLabel" layoutX="86.0" layoutY="61.0" text="Last Name:">
          <graphic>
-            <TextField />
+            <TextField fx:id="lastNameTextField" promptText="Last Name" />
          </graphic>
       </Label>
-      <DatePicker layoutX="86.0" layoutY="100.0" />
+      <DatePicker layoutX="86.0" layoutY="100.0" promptText="1/1/2016" />
       <Label fx:id="userNameLabel" layoutX="86.0" layoutY="147.0" text="Username:">
          <graphic>
-            <TextField />
+            <TextField fx:id="userNameTextField" promptText="Username" />
          </graphic>
       </Label>
       <Label fx:id="passwordLabel" layoutX="86.0" layoutY="181.0" text="Password:">
          <graphic>
-            <TextField />
-         </graphic>
-      </Label>
+            <PasswordField fx:id="passwordField" promptText="Password" />
+         </graphic></Label>
       <Label fx:id="confirmPasswordLabel" layoutX="86.0" layoutY="215.0" text="Confirm password:">
          <graphic>
-            <TextField />
-         </graphic>
-      </Label>
+            <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" />
+         </graphic></Label>
       <Label fx:id="emailLabel" layoutX="86.0" layoutY="250.0" text="Email:">
          <graphic>
-            <TextField />
+            <TextField fx:id="emailTextField" promptText="Enter email address" />
          </graphic>
       </Label>
+      <Button fx:id="createAccountButton" layoutX="86.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#createAccount" text="Create Account" />
+      <Label fx:id="incorrectLabel" layoutX="86.0" layoutY="361.0" text="Some information is incorrect or missing." textFill="#e82f2f" visible="false" />
    </children>
 </AnchorPane>
