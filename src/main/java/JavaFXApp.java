@@ -15,7 +15,9 @@ public class JavaFXApp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/view/LoginScreen.fxml"));
 
         primaryStage.setScene(new Scene(root));
-        primaryStage.setTitle("OPT2 navigation example");
+        primaryStage.setTitle("ZeroXess");
+        primaryStage.setMinHeight(800.0);
+        primaryStage.setMinWidth(900.0);
         primaryStage.show();
     }
 }

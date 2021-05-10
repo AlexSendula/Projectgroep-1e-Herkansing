@@ -3,14 +3,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<AnchorPane fx:id="rootPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
-      <Button fx:id="loginButton" layoutX="78.0" layoutY="65.0" mnemonicParsing="false" onMouseClicked="#login" text="Login" />
-      <Label layoutX="78.0" layoutY="32.0" text="Welcome to the login screen" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="92.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+      <Label layoutX="61.0" layoutY="58.0" text="Welcome to the ZeroXess">
+         <font>
+            <Font name="Segoe UI" size="38.0" />
+         </font></Label>
+      <TextField fx:id="usernameField" layoutX="62.0" layoutY="243.0" promptText="Username">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font></TextField>
+      <PasswordField fx:id="passwordField" layoutX="62.0" layoutY="298.0" promptText="Password">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font></PasswordField>
+      <Button fx:id="loginButton" layoutX="63.0" layoutY="405.0" mnemonicParsing="false" onMouseClicked="#login" prefHeight="41.0" prefWidth="75.0" text="Log in" />
+      <ImageView fitHeight="217.0" fitWidth="443.0" layoutX="434.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@/hhs.jpg" />
+            <Image url="@../KumbayaTM_logo.png" />
          </image></ImageView>
+      <Label fx:id="incorrectText" layoutX="61.0" layoutY="350.0" prefHeight="22.0" prefWidth="268.0" text="Incorrect username or password." textFill="#e82f2f" visible="false">
+         <font>
+            <Font name="Segoe UI Bold" size="17.0" />
+         </font>
+      </Label>
+      <Button fx:id="createAccountButton" layoutX="62.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#createAccount" prefHeight="41.0" prefWidth="150.0" text="Create an account" />
    </children>
 </AnchorPane>
