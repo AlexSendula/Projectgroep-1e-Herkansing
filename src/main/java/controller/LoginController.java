@@ -38,7 +38,8 @@ public class LoginController implements Initializable {
     }
 
     public void createAccount(MouseEvent mouseEvent) throws IOException {
-//TODO: Naar createaccount sturen
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/CreateAccountScreen.fxml"));
+        rootPane.getChildren().setAll(pane);
     }
 
 
