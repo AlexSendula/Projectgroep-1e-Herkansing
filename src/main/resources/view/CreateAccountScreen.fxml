@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="firstNameLabel" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CreateAccountScreen">
+   <children>
+      <Label fx:id="firstNameLabel" layoutX="86.0" layoutY="30.0" text="First Name:">
+         <graphic>
+            <TextField />
+         </graphic>
+      </Label>
+      <Label fx:id="lastNameLabel" layoutX="86.0" layoutY="61.0" text="Last Name:">
+         <graphic>
+            <TextField />
+         </graphic>
+      </Label>
+      <DatePicker layoutX="86.0" layoutY="100.0" />
+      <Label fx:id="userNameLabel" layoutX="86.0" layoutY="147.0" text="Username:">
+         <graphic>
+            <TextField />
+         </graphic>
+      </Label>
+      <Label fx:id="passwordLabel" layoutX="86.0" layoutY="181.0" text="Password:">
+         <graphic>
+            <TextField />
+         </graphic>
+      </Label>
+      <Label fx:id="confirmPasswordLabel" layoutX="86.0" layoutY="215.0" text="Confirm password:">
+         <graphic>
+            <TextField />
+         </graphic>
+      </Label>
+      <Label fx:id="emailLabel" layoutX="86.0" layoutY="250.0" text="Email:">
+         <graphic>
+            <TextField />
+         </graphic>
+      </Label>
+   </children>
+</AnchorPane>
