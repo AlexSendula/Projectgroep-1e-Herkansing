@@ -10,6 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import classes.*;
+
+
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
@@ -28,14 +31,14 @@ public class LoginController implements Initializable {
     private Label incorrectText;
 
     public void login(MouseEvent mouseEvent) throws IOException {
-        if (usernameField.getText().equals("abc") && passwordField.getText().equals("123")){
-//            TODO: Username en password uit bestand laten lezen. Gebruik maken van login class.
+        if (new Login().validateLogin(passwordField.getText(),User.getInstance(usernameField.getText()).getPassword())){
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/HomeScreen.fxml"));
             rootPane.getChildren().setAll(pane);
         } else {
             incorrectText.setVisible(true);
         }
     }
+
 
     public void createAccount(MouseEvent mouseEvent) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/CreateAccountScreen.fxml"));
