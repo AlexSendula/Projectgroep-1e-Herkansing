@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.nio.file.LinkPermission;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -23,6 +22,11 @@ class BonVerwerkerTest {
                 "The total price: 100.0.\n" +
                 "Your discount is: 10.0%.\n" +
                 "Your price after discount: 90.0";
+        String foutResultaat = "Customer Arman has purchased the following products:\n" +
+                "Houtbalk, Schroef, \n" +
+                "The total price: 120.0.\n" +
+                "Your discount is: 20.0%.\n" +
+                "Your price after discount: 80.0";
         String input = "";
         try {
             Scanner scanner = new Scanner(new File("src/main/resources/Receipts/receipt"+bonNummer+".txt"));
@@ -34,6 +38,7 @@ class BonVerwerkerTest {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        assertTrue(resultaat.contains(input)||input.contains(resultaat));
+        assertTrue(input.contains(resultaat));
+        assertFalse(foutResultaat.contains(input));
     }
 }

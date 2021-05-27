@@ -39,10 +39,8 @@ public class BonVerwerker {
             writer.write(""+nieuwNummer);
 
             writer.close();
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        } catch (IOException exception) {
-            exception.printStackTrace();
         }
         return bonNummer;
     }
@@ -65,19 +63,12 @@ public class BonVerwerker {
         }
     }
 
-    /*public void leesBon() {
+    public void leesBon(String input) {
         try {
-            File file = new File("src/main/resources/receipt"+input+".txt");
-            Scanner scanner = new Scanner(file);
-            String bonTekst = "";
-            while (scanner.hasNextLine()) {
-                scanner.nextLine();
-                }
-            }
-            scanner.close();
+            Scanner scanner = new Scanner(new File("src/main/resources/bonNummer"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
 }
