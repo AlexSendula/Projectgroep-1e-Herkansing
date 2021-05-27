@@ -1,0 +1,59 @@
+{
+  "categorieen": [
+    "Elektronica",
+    "Kleding",
+    "Meubelen",
+    "Sale"
+  ],
+  "items": {
+    "123456": {
+      "naam": "Laptop",
+      "beschrijving": "Een kleine en krachtige computer die je overal mee kunt nemen.",
+      "prijs": "399.99",
+      "voorraad": "7",
+      "categorieen": [
+        "Elektronica"
+      ]
+    },
+    "123457": {
+      "naam": "Televisie",
+      "beschrijving": "De beste Samsung oled 4k tv voor de leukste films om te kijken.",
+      "prijs": "244.99",
+      "voorraad": "13",
+      "categorieen": [
+        "Elektronica",
+        "Sale"
+      ]
+    },
+    "123458": {
+      "naam": "T-shirt",
+      "beschrijving": "Een normale Hema t-shirt.",
+      "prijs": "2.50",
+      "voorraad": "44",
+      "categorieen": [
+        "Kleding"
+      ]
+    },
+    "123459": {
+      "naam": "Uitklapbare TV-Kast",
+      "beschrijving": "Een elektrisch uitklapbare tv-kast die te bedienen is op afstand.",
+      "prijs": "649.99",
+      "voorraad": "6",
+      "categorieen": [
+        "Elektronica",
+        "Meubelen"
+      ]
+    },
+    "123460": {
+      "naam": "Uitklapbare Stoel",
+      "beschrijving": "Een elektrisch uitklapbare stoel.",
+      "prijs": "124.49",
+      "voorraad": "13",
+      "categorieen": [
+        "Elektronica",
+        "Meuebelen",
+        "Sale"
+      ]
+    }
+  }
+}
