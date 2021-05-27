@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import static java.lang.Integer.parseInt;
 
 public class BonVerwerker {
@@ -14,14 +13,14 @@ public class BonVerwerker {
     private ArrayList<String> producten; //TODO: Naar product object veranderen? Verbinden aan product/item klasse.
     private double totaalprijs;
     private double kortingspercentage;
-    private double prijsNaKorting;
+    public double prijsNaKorting;
 
     public BonVerwerker(String naamKlant, ArrayList<String> producten, double kortingspercentage){
         this.naamKlant = naamKlant;
         this.producten = producten;
         this.kortingspercentage = kortingspercentage;
         this.totaalprijs = 100; //TODO: Alle prijzen van producten op tellen die in arraylist zitten
-        this.prijsNaKorting = totaalprijs*(1-kortingspercentage/100); //TODO: Afronden op twee decimalen
+        this.prijsNaKorting = Math.round((totaalprijs*(1-kortingspercentage/100))*100)/100; //TODO: Afronden op twee decimalen
     }
 
     public static int bonNummer() {
@@ -37,7 +36,6 @@ public class BonVerwerker {
             nieuwNummer = bonNummer+1;
             FileWriter writer = new FileWriter("src/main/resources/bonNummer");
             writer.write(""+nieuwNummer);
-
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,7 +47,6 @@ public class BonVerwerker {
         try {
             FileWriter writer = new FileWriter("src/main/resources/Receipts/receipt"+bonNummer+".txt");
             String tekst = "Customer "+this.naamKlant+" has purchased the following products:\n";
-
             for (String product : this.producten) {
                 tekst = tekst + product + ", ";
             }
@@ -63,12 +60,22 @@ public class BonVerwerker {
         }
     }
 
-    public void leesBon(String input) {
+    public static String leesBon() {
+        String bon = "";
+        int bonNummer;
         try {
             Scanner scanner = new Scanner(new File("src/main/resources/bonNummer"));
+            bonNummer = parseInt(scanner.nextLine());
+            scanner.close();
+            scanner = new Scanner(new File("src/main/resources/Receipts/receipt"+bonNummer+".txt"));
+            while (scanner.hasNextLine()){
+                bon = bon+scanner.nextLine()+"\n";
+                bon.substring(0,bon.length()-1);
+            }
+            scanner.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        return bon;
     }
-
 }
