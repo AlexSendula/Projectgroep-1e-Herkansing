@@ -18,8 +18,13 @@ public class HomeController implements Initializable {
     private AnchorPane rootPane;
 
     public void shop(MouseEvent mouseEvent) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/Shop.fxml"));
-        rootPane.getChildren().setAll(pane);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ShopScreen.fxml"));
+        AnchorPane root = loader.load();
+
+        ShopController sC = loader.getController();
+        sC.initData(user);
+
+        rootPane.getChildren().setAll(root);
     }
 
     public void setActiveUser(User activeUser) {

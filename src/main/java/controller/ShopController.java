@@ -2,33 +2,31 @@ package controller;
 
 import classes.Product;
 import classes.User;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
 public class ShopController implements Initializable {
-
+    private User user;
     private List<Product> productList;
+
+    @FXML
+    private Button homeButton;
 
     @FXML
     private AnchorPane rootPane;
@@ -45,9 +43,26 @@ public class ShopController implements Initializable {
     @FXML
     private TableColumn<Product, Double> priceColumn;
 
+    public ShopController() {
+    }
+
 //    @FXML
 //    private TableColumn<Product, ?> linkColumn;
 
+    public void initData(User activeUser) {
+        user = activeUser;
+    }
+
+    @FXML
+    void home(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeScreen.fxml"));
+        AnchorPane root = loader.load();
+
+        HomeController hC = loader.getController();
+        hC.setActiveUser(user);
+
+        rootPane.getChildren().setAll(root);
+    }
 
     public void gsonParser(MouseEvent mouseEvent) {
 
@@ -82,16 +97,5 @@ public class ShopController implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 
         shopTable.setItems(getProduct());
-    }
-
-    public void logOutEvent(MouseEvent mouseEvent) throws  IOException {
-        User.logOut();
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/LoginScreen.fxml"));
-        rootPane.getChildren().setAll(pane);
-    }
-
-    public void homeEvent (MouseEvent mouseEvent) throws  IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/HomeScreen.fxml"));
-        rootPane.getChildren().setAll(pane);
     }
 }
