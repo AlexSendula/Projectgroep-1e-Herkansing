@@ -12,16 +12,16 @@
          <children>
             <Pane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #D3D3D3;">
                <children>
-                  <Button fx:id="homeButton" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#homeBtn" text="Home" />
-                  <Button fx:id="logoutButton" layoutX="529.0" layoutY="13.0" mnemonicParsing="false" onAction="#logoutBtn" text="Log out" />
+                  <Button fx:id="homeButton" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#homeEvent" text="Home" />
+                  <Button fx:id="logoutButton" layoutX="529.0" layoutY="13.0" mnemonicParsing="false" onAction="#logOutEvent" text="Log out" />
                </children>
             </Pane>
             <TableView fx:id="shopTable" layoutY="50.0" prefHeight="350.0" prefWidth="600.0">
                <columns>
-                  <TableColumn prefWidth="164.0" text="Category" />
-                  <TableColumn prefWidth="242.0" text="Name" />
-                  <TableColumn prefWidth="96.0" text="Price" />
-                  <TableColumn minWidth="0.0" prefWidth="97.0" text="Link" />
+                  <TableColumn fx:id="categoryColumn" prefWidth="164.0" text="Category" />
+                  <TableColumn fx:id="nameColumn" prefWidth="242.0" text="Name" />
+                  <TableColumn fx:id="priceColumn" prefWidth="96.0" text="Price" />
+                  <TableColumn fx:id="linkColumn" minWidth="0.0" prefWidth="97.0" text="Link" />
                </columns>
             </TableView>
          </children>
