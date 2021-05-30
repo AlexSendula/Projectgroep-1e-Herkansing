@@ -1,4 +1,4 @@
-Customer Arman has purchased the following products:
+Customer Test has purchased the following products:
 Houtbalk, Schroef, 
 The total price: 100.0.
 Your discount is: 10.0%.

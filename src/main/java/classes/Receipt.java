@@ -45,7 +45,7 @@ public class Receipt {
 
     public void writeReceipt(int receiptNumber) {
         try {
-            FileWriter writer = new FileWriter("src/main/resources/Receipts/receipt" + receiptNumber + ".txt");
+            FileWriter writer = new FileWriter("src/main/resources/Receipts/receipt" + receiptNumber + "-" + this.nameClient + ".txt");
             String text = "Customer " + this.nameClient + " has purchased the following products:\n";
             for (String product : this.products) {
                 text = text + product + ", ";
@@ -67,15 +67,39 @@ public class Receipt {
             Scanner scanner = new Scanner(new File("src/main/resources/bonNummer"));
             receiptNumber = parseInt(scanner.nextLine());
             scanner.close();
-            scanner = new Scanner(new File("src/main/resources/Receipts/receipt"+receiptNumber+".txt"));
-            while (scanner.hasNextLine()){
-                receipt = receipt+scanner.nextLine()+"\n";
-                receipt.substring(0,receipt.length()-1);
-            }
-            scanner.close();
+                scanner = new Scanner(new File("src/main/resources/Receipts/receipt" + receiptNumber + ".txt"));
+                while (scanner.hasNextLine()) {
+                    receipt = receipt + scanner.nextLine() + "\n";
+                    receipt.substring(0, receipt.length() - 1);
+                }
+                scanner.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         return receipt;
+    }
+
+    public static ArrayList<String> allReceiptsPerUser(User activeUser) throws FileNotFoundException {
+        ArrayList<String> receipts = new ArrayList<>();
+
+        String target_dir = "src/main/resources/Receipts/";
+        File dir = new File(target_dir);
+        File[] files = dir.listFiles();
+
+        Scanner scanner = null;
+        String receipt = "";
+
+        for(File f : files) {
+            if(f.getName().contains(activeUser.getUsername())) {
+                scanner = new Scanner(f);
+                while (scanner.hasNextLine()) {
+                    receipt = receipt + scanner.nextLine() + "\n";
+                    receipt.substring(0, receipt.length() - 1);
+                }
+                receipt = receipt + "\n";
+                receipts.add(receipt);
+            }
+        }
+        return receipts;
     }
 }
