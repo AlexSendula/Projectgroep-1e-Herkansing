@@ -1,5 +1,8 @@
 package classes;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -15,7 +18,7 @@ public class Receipt {
     private double discountPercentage;
     public double priceAfterDiscount;
 
-    public Receipt(String nameClient, ArrayList<String> products, double discountPercentage){
+    public Receipt(String nameClient, ArrayList<String> products, double discountPercentage) {
         this.nameClient = nameClient;
         this.products = products;
         this.discountPercentage = discountPercentage;
@@ -28,6 +31,7 @@ public class Receipt {
         int receiptNumber = 0;
         int newNumber = 0;
         Scanner scanner = null;
+
         try {
             scanner = new Scanner(new File("src/main/resources/bonNummer"));
             input = scanner.nextLine();
@@ -50,7 +54,7 @@ public class Receipt {
             for (String product : this.products) {
                 text = text + product + ", ";
             }
-            text = text + "\nThe total price: " + this.totalPrice + ".\nYour discount is: " + discountPercentage + "%.\n"+"Your price after discount: " + this.priceAfterDiscount + ".";
+            text = text + "\nThe total price: " + this.totalPrice + ".\nYour discount is: " + discountPercentage + "%.\n" + "Your price after discount: " + this.priceAfterDiscount + ".";
 
             text = text.substring(0, text.length() - 1);
             writer.write(text);
@@ -60,44 +64,33 @@ public class Receipt {
         }
     }
 
-    public static String readReceipt() {
+    public static String readReceipt(String fileName) {
         String receipt = "";
-        int receiptNumber;
+
         try {
-            Scanner scanner = new Scanner(new File("src/main/resources/bonNummer"));
-            receiptNumber = parseInt(scanner.nextLine());
+            Scanner scanner = new Scanner(new File("src/main/resources/Receipts/" + fileName));
+            while (scanner.hasNextLine()) {
+                receipt += scanner.nextLine() + "\n";
+                receipt.substring(0, receipt.length() - 1);
+            }
             scanner.close();
-                scanner = new Scanner(new File("src/main/resources/Receipts/receipt" + receiptNumber + ".txt"));
-                while (scanner.hasNextLine()) {
-                    receipt = receipt + scanner.nextLine() + "\n";
-                    receipt.substring(0, receipt.length() - 1);
-                }
-                scanner.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         return receipt;
     }
 
-    public static ArrayList<String> allReceiptsPerUser(User activeUser) throws FileNotFoundException {
+    public static ArrayList<String> allReceiptsPerUser(User activeUser) {
         ArrayList<String> receipts = new ArrayList<>();
 
         String target_dir = "src/main/resources/Receipts/";
         File dir = new File(target_dir);
         File[] files = dir.listFiles();
 
-        Scanner scanner = null;
-        String receipt = "";
-
-        for(File f : files) {
-            if(f.getName().contains(activeUser.getUsername())) {
-                scanner = new Scanner(f);
-                while (scanner.hasNextLine()) {
-                    receipt = receipt + scanner.nextLine() + "\n";
-                    receipt.substring(0, receipt.length() - 1);
-                }
-                receipt = receipt + "\n";
-                receipts.add(receipt);
+        for (File f : files) {
+            String fileName = f.getName();
+            if (f.getName().substring(f.getName().lastIndexOf("-") + 1).equals(activeUser.getUsername() + ".txt")) {
+                receipts.add(fileName);
             }
         }
         return receipts;
