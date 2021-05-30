@@ -3,12 +3,15 @@ package controller;
 import classes.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class HomeController {
+public class HomeController implements Initializable {
     private User user;
 
     @FXML
@@ -27,8 +30,7 @@ public class HomeController {
         AnchorPane root = loader.load();
 
         ReceiptController rC = loader.getController();
-        rC.setActiveUser(user);
-        rC.init();
+        rC.initData(user);
 
         rootPane.getChildren().setAll(root);
     }
@@ -39,4 +41,8 @@ public class HomeController {
         rootPane.getChildren().setAll(pane);
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 }

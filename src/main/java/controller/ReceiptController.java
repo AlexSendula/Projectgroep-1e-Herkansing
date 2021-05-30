@@ -2,10 +2,20 @@ package controller;
 
 import classes.Receipt;
 import classes.User;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -13,8 +23,10 @@ import javafx.scene.text.Text;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ReceiptController {
+public class ReceiptController implements Initializable {
     private User user;
 
     @FXML
@@ -30,6 +42,18 @@ public class ReceiptController {
     private Button backButton;
 
     @FXML
+    private ListView<String> receiptsTable;
+
+    @FXML
+    public void initData(User activeUser) {
+        user = activeUser;
+
+        breadcrumb.setText("Receipts for: " + user.getUsername());
+
+        receiptsTable.setItems(FXCollections.observableArrayList(Receipt.allReceiptsPerUser(user)));
+    }
+
+    @FXML
     void back(MouseEvent mouseEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeScreen.fxml"));
         AnchorPane root = loader.load();
@@ -40,14 +64,13 @@ public class ReceiptController {
         rootPane.getChildren().setAll(root);
     }
 
-    public void setActiveUser(User activeUser) {
-        user = activeUser;
-    }
-
-    public void init() throws FileNotFoundException {
-        breadcrumb.setText("Receipts for: " + user.getUsername());
-        for(String s : Receipt.allReceiptsPerUser(user)) {
-            receiptLabel.setText(s);
-        }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        receiptsTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                receiptLabel.setText(Receipt.readReceipt(newValue));
+            }
+        });
     }
 }
