@@ -1,4 +1,4 @@
-import classes.BonVerwerker;
+import classes.Receipt;
 
 import java.util.ArrayList;
 

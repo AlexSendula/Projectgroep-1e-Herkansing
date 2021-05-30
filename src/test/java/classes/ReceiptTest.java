@@ -9,14 +9,14 @@ import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BonVerwerkerTest {
+class ReceiptTest {
     @Test
     void schrijfBon() {
-        int bonNummer = BonVerwerker.bonNummer();
+        int bonNummer = Receipt.receiptNumber();
         ArrayList<String> producten = new ArrayList<>();
         producten.add("Houtbalk");
         producten.add("Schroef");
-        new BonVerwerker("Arman",producten,10).schrijfBon(bonNummer);
+        new Receipt("Arman",producten,10).writeReceipt(bonNummer);
         String resultaat = "Customer Arman has purchased the following products:\n" +
                 "Houtbalk, Schroef, \n" +
                 "The total price: 100.0.\n" +
