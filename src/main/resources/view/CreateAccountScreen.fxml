@@ -15,7 +15,7 @@
             <TextField fx:id="lastNameTextField" promptText="Last Name" />
          </graphic>
       </Label>
-      <DatePicker layoutX="86.0" layoutY="100.0" promptText="1/1/2016" />
+      <DatePicker fx:id="birthDay" layoutX="86.0" layoutY="100.0" promptText="1/1/2016" />
       <Label fx:id="userNameLabel" layoutX="86.0" layoutY="147.0" text="Username:">
          <graphic>
             <TextField fx:id="userNameTextField" promptText="Username" />

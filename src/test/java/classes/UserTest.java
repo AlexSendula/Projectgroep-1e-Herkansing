@@ -1,5 +1,6 @@
 package classes;
 
+import com.sun.scenario.effect.ImageData;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,5 +20,12 @@ class UserTest {
         User.getInstance("Jan");
         assertFalse(User.getInstance("").getPassword().equals("Arman12"));
         assertTrue(User.getInstance("").getPassword().equals("Jan12"));
+    }
+
+    @Test
+    void readData() {
+
+        assertFalse(User.getInstance().readData(1,"Aleks","ww3"));
+        assertTrue(User.getInstance().readData(1,"dylan","ww1"));
     }
 }
