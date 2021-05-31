@@ -21,29 +21,55 @@ public class User {
     }
     public static User getInstance() {
 
-        return single_instance;
-
-        if (single_instance == null)
+        if (single_instance == null) {
 //            TODO: Gegevens uit file laten komen.
             single_instance = new User(1, "username", "password", "a@a.nl");
-
+        }
         return single_instance;
 }
-    public boolean readData(int inputId, String inputUsername, String inputPassword) {
+    public boolean readData(String inputUsername, String inputPassword) {
         try {
             Scanner scanner = new Scanner(new File("src/main/resources/Data"));
             while (scanner.hasNextLine()){
                 String[] Data = scanner.nextLine().split(",");
-                if (Data[0].equals(inputId) && Data[1].equals(inputUsername) && Data[2].equals(inputPassword)){
+                if (Data[3].equals(inputUsername) && Data[4].equals(inputPassword)){
                     return true;
                 }
             }
+            scanner.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         return false;
     }
+    public void createAccount(String firstName, String lastName, String Date, String userName, String password, String confirmPassword, String email){
+        boolean createAccountPossible = false;
+        if (!firstName.equals("") && !lastName.equals("")  && !userName.equals("") && !password.equals("") && password.equals(confirmPassword) && !email.equals("")) {
+            try {
+            Scanner scanner = new Scanner(new File("src/main/resources/Data"));
+            while (scanner.hasNextLine()){
+                String[] Data = scanner.nextLine().split(",");
+                if (!Data[3].equals(userName)){
+                    createAccountPossible = true;
+                }
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        }if (createAccountPossible){
+            try {
+                FileWriter fileWriter = new FileWriter("src/main/resources/Data");
+                fileWriter.append(firstName + "," + lastName + "," + Date + "," + userName + "," + password + "," + email + "\n");
+                fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+        }else {
+            //Error message
+        }
+    }
     public static void logOut(){
         single_instance = null;
     }
