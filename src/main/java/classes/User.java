@@ -47,20 +47,33 @@ public class User {
         if (!firstName.equals("") && !lastName.equals("")  && !userName.equals("") && !password.equals("") && password.equals(confirmPassword) && !email.equals("")) {
             try {
             Scanner scanner = new Scanner(new File("src/main/resources/Data"));
-            while (scanner.hasNextLine()){
-                String[] Data = scanner.nextLine().split(",");
-                if (!Data[3].equals(userName)){
-                    createAccountPossible = true;
-                }
-            }
+
+            //TODO: controleren of username al bestaat
+            //while (scanner.hasNextLine()){
+                //String[] Data = scanner.nextLine().split(",");
+                createAccountPossible = true;
+            //}
             scanner.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        }if (createAccountPossible){
+        }
+        if (createAccountPossible){
             try {
                 FileWriter fileWriter = new FileWriter("src/main/resources/Data");
                 fileWriter.append(firstName + "," + lastName + "," + Date + "," + userName + "," + password + "," + email + "\n");
+//                TODO: File inlezen en daarna pas append
+
+                /*
+                 String a= "";
+                 while (scanner.hasnextline){
+               a = a + scanner.nextLine()+"\n"
+
+            }
+            a = a + gegevens + "\n"
+            fileWriter.write(a);
+            */
+
                 fileWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
