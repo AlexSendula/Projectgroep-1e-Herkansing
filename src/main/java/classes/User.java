@@ -46,7 +46,7 @@ public class User {
     }
     public void createAccount(String firstName, String lastName, String Date, String userName, String password, String confirmPassword, String email){
         boolean createAccountPossible = true;
-        if (!firstName.equals("") && !lastName.equals("")  && !userName.equals("") && !password.equals("") && password.equals(confirmPassword) && !email.equals("")) {
+        if (!firstName.isBlank() && !lastName.isBlank()  && !userName.isBlank() && !password.isBlank() && password.equals(confirmPassword) && !email.isBlank()) {
             try {
             Scanner scanner = new Scanner(new File("src/main/resources/Data"));
 
@@ -61,6 +61,8 @@ public class User {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        } else {
+            createAccountPossible = false;
         }
         if (createAccountPossible){
             CreateAccountController.incorrectAccount = false;
