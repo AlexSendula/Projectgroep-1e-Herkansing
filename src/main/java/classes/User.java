@@ -45,16 +45,18 @@ public class User {
         return false;
     }
     public void createAccount(String firstName, String lastName, String Date, String userName, String password, String confirmPassword, String email){
-        boolean createAccountPossible = false;
+        boolean createAccountPossible = true;
         if (!firstName.equals("") && !lastName.equals("")  && !userName.equals("") && !password.equals("") && password.equals(confirmPassword) && !email.equals("")) {
             try {
             Scanner scanner = new Scanner(new File("src/main/resources/Data"));
 
             //TODO: controleren of username al bestaat
-            //while (scanner.hasNextLine()){
-                //String[] Data = scanner.nextLine().split(",");
-                createAccountPossible = true;
-            //}
+            while (scanner.hasNextLine()&&createAccountPossible){
+                String[] userData = scanner.nextLine().split(",");
+                if (userData[3].equals(userName)){
+                    createAccountPossible = false;
+                }
+            }
             scanner.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
