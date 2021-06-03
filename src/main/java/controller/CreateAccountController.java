@@ -36,7 +36,7 @@ public class CreateAccountController {
     public static boolean incorrectAccount = false;
 
     public void createAccount(MouseEvent mouseEvent) throws IOException {
-        User.getInstance().createAccount(firstNameTextField.getText(), lastNameTextField.getText(),"", userNameTextField.getText(), passwordField.getText(), confirmPasswordField.getText(), emailTextField.getText());
+        User.getInstance(userNameTextField.getText()).createAccount(firstNameTextField.getText(), lastNameTextField.getText(),"", userNameTextField.getText(), passwordField.getText(), confirmPasswordField.getText(), emailTextField.getText());
 //              TODO: Exceptions maken voor alle ingevulde gegevens. Alle gegevens in bestand opslaan en gebruik maken van een User class. (?)
         if (!incorrectAccount) {
 
