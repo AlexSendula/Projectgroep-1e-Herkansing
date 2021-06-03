@@ -30,7 +30,7 @@ public class LoginController implements Initializable {
     @FXML
     private Label incorrectText;
 
-    public void login(MouseEvent mouseEvent) throws IOException {
+    public void login(MouseEvent mouseEvent) throws IOException {/*
         if (new Login().validateLogin(passwordField.getText(),User.getInstance(usernameField.getText()).getPassword())){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeScreen.fxml"));
             AnchorPane root = loader.load();
@@ -41,7 +41,7 @@ public class LoginController implements Initializable {
             rootPane.getChildren().setAll(root);
         } else {
             incorrectText.setVisible(true);
-        }
+        }*/
     }
 
 
