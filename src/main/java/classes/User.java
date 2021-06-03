@@ -9,23 +9,15 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class User {
-    private int id;
     private String username;
-    private String password;
-    private String email;
     private static User single_instance = null;
 
-    private User(int id, String username, String password, String email){
-        this.id = id;
+    private User(String username){
         this.username = username;
-        this.password = password;
-        this.email = email;
     }
-    public static User getInstance() {
-
+    public static User getInstance(String username) {
         if (single_instance == null) {
-//            TODO: Gegevens uit file laten komen.
-            single_instance = new User(1, "username", "password", "a@a.nl");
+            single_instance = new User(username);
         }
         return single_instance;
 }
@@ -50,7 +42,6 @@ public class User {
             try {
             Scanner scanner = new Scanner(new File("src/main/resources/Data"));
 
-            //TODO: controleren of username al bestaat
             while (scanner.hasNextLine()&&createAccountPossible){
                 String[] userData = scanner.nextLine().split(",");
                 if (userData[3].equals(userName)){
@@ -86,10 +77,6 @@ public class User {
     }
     public static void logOut(){
         single_instance = null;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public String getUsername() {
