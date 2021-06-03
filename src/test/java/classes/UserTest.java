@@ -26,6 +26,6 @@ class UserTest {
     void readData() {
 
         assertFalse(User.getInstance().readData("Aleks","ww3"));
-        assertTrue(User.getInstance().readData("dylan","ww1"));
+        assertTrue(User.getInstance().readData("Arman","123"));
     }
 }

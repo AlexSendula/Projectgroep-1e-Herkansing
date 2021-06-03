@@ -46,7 +46,7 @@ public class User {
     }
     public void createAccount(String firstName, String lastName, String Date, String userName, String password, String confirmPassword, String email){
         boolean createAccountPossible = true;
-        if (!firstName.isBlank() && !lastName.isBlank()  && !userName.isBlank() && !password.isBlank() && password.equals(confirmPassword) && !email.isBlank()) {
+        if (!firstName.isBlank() && !lastName.isBlank() && !Date.isBlank() && !userName.isBlank() && !password.isBlank() && password.equals(confirmPassword) && !email.isBlank()) {
             try {
             Scanner scanner = new Scanner(new File("src/main/resources/Data"));
 
