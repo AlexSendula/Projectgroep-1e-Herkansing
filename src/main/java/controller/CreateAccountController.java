@@ -30,12 +30,23 @@ public class CreateAccountController {
     @FXML
     private Label incorrectLabel;
 
+    public static boolean incorrectAccount = false;
 
     public void createAccount(MouseEvent mouseEvent) throws IOException {
         User.getInstance().createAccount(firstNameTextField.getText(), lastNameTextField.getText(),"", userNameTextField.getText(), passwordField.getText(), confirmPasswordField.getText(), emailTextField.getText());
 //              TODO: Exceptions maken voor alle ingevulde gegevens. Alle gegevens in bestand opslaan en gebruik maken van een User class. (?)
+        if (!incorrectAccount) {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/LoginScreen.fxml"));
             rootPane.getChildren().setAll(pane);
+        } else {
             incorrectLabel.setVisible(true);
+        }
+
     }
+
+    public void backButton(MouseEvent mouseEvent) throws  IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/LoginScreen.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
 }

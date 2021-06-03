@@ -36,5 +36,6 @@
       </Label>
       <Button fx:id="createAccountButton" layoutX="86.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#createAccount" text="Create Account" />
       <Label fx:id="incorrectLabel" layoutX="86.0" layoutY="361.0" text="Some information is incorrect or missing." textFill="#e82f2f" visible="false" />
+      <Button fx:id="backButton" layoutX="192.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#backButton" text="Back" />
    </children>
 </AnchorPane>

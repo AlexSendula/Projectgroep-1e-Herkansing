@@ -1,5 +1,7 @@
 package classes;
 
+import controller.CreateAccountController;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -59,28 +61,23 @@ public class User {
         }
         }
         if (createAccountPossible){
+            CreateAccountController.incorrectAccount = false;
             try {
+                Scanner scanner = new Scanner(new File("src/main/resources/Data"));
+                String data = "";
+                while (scanner.hasNext()){
+                    data = data+scanner.nextLine()+"\n";
+                }
+                scanner.close();
                 FileWriter fileWriter = new FileWriter("src/main/resources/Data");
-                fileWriter.append(firstName + "," + lastName + "," + Date + "," + userName + "," + password + "," + email + "\n");
-//                TODO: File inlezen en daarna pas append
-
-                /*
-                 String a= "";
-                 while (scanner.hasnextline){
-               a = a + scanner.nextLine()+"\n"
-
-            }
-            a = a + gegevens + "\n"
-            fileWriter.write(a);
-            */
-
+                fileWriter.write(data +firstName + "," + lastName + "," + Date + "," + userName + "," + password + "," + email);
                 fileWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
         }else {
-            //Error message
+            CreateAccountController.incorrectAccount = true;
         }
     }
     public static void logOut(){
