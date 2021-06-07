@@ -1,6 +1,6 @@
 package controller;
 
-import User.User;
+import Users.CreateAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.DatePicker;
@@ -33,13 +33,10 @@ public class CreateAccountController {
     @FXML
     private DatePicker birthDay;
 
-    public static boolean incorrectAccount = false;
 
     public void createAccount(MouseEvent mouseEvent) throws IOException {
         String[] userInformation = {firstNameTextField.getText(), lastNameTextField.getText(), String.valueOf(birthDay.getValue()), userNameTextField.getText(), passwordField.getText(), confirmPasswordField.getText(), emailTextField.getText()};
-        User.getInstance(userNameTextField.getText()).createAccount(userInformation);
-        if (!incorrectAccount) {
-
+        if (!new CreateAccount().createAccount(userInformation)){
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/LoginScreen.fxml"));
             rootPane.getChildren().setAll(pane);
         } else {

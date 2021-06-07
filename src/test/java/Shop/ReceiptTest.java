@@ -1,6 +1,6 @@
 package Shop;
 
-import Receipt.Receipt;
+import Receipts.Receipt;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

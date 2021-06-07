@@ -1,6 +1,5 @@
-package User;
+package Users;
 
-import controller.CreateAccountController;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,34 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class User {
-    private String username;
-    private static User single_instance = null;
-
-    private User(String username){
-        this.username = username;
-    }
-    public static User getInstance(String username) {
-        if (single_instance == null) {
-            single_instance = new User(username);
-        }
-        return single_instance;
-}
-    public boolean readData(String inputUsername, String inputPassword) {
-        try {
-            Scanner scanner = new Scanner(new File("src/main/resources/Data"));
-            while (scanner.hasNextLine()){
-                String[] Data = scanner.nextLine().split(",");
-                if (Data[3].equals(inputUsername) && Data[4].equals(inputPassword)){
-                    return true;
-                }
-            }
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
+public class CreateAccount {
 
     public boolean createAccountPossible(String[] userInformation) {
         boolean createAccountPossible = true;
@@ -58,9 +30,11 @@ public class User {
         }
         return createAccountPossible;
     }
-        public void createAccount(String[] userInformation){
+
+    public boolean createAccount(String[] userInformation){
+        boolean incorrAcc;
         if (createAccountPossible(userInformation)){
-            CreateAccountController.incorrectAccount = false;
+            incorrAcc = false;
             try {
                 Scanner scanner = new Scanner(new File("src/main/resources/Data"));
                 String data = "";
@@ -81,14 +55,8 @@ public class User {
             }
 
         }else {
-            CreateAccountController.incorrectAccount = true;
+            incorrAcc = true;
         }
-    }
-    public static void logOut(){
-        single_instance = null;
-    }
-
-    public String getUsername() {
-        return this.username;
+        return incorrAcc;
     }
 }

@@ -1,7 +1,7 @@
 package controller;
 
-import Receipt.Receipt;
-import User.User;
+import Receipts.Receipt;
+import Users.User;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

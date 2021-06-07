@@ -1,6 +1,6 @@
-package Receipt;
+package Receipts;
 
-import User.User;
+import Users.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,7 +1,7 @@
 package controller;
 
 import Shop.Product;
-import User.User;
+import Users.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
