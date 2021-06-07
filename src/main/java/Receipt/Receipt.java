@@ -1,7 +1,6 @@
-package classes;
+package Receipt;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import User.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;

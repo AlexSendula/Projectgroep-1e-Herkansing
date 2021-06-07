@@ -1,4 +1,4 @@
-package classes;
+package Shop;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

@@ -1,4 +1,4 @@
-package classes;
+package User;
 
 import controller.CreateAccountController;
 

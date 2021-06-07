@@ -1,6 +1,6 @@
-package classes;
+package Shop;
 
-import com.sun.scenario.effect.ImageData;
+import User.User;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
