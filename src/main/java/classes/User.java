@@ -36,10 +36,9 @@ public class User {
         }
         return false;
     }
-    //public void createAccount(String firstName, String lastName, String Date, String userName, String password, String confirmPassword, String email, String[] userInformation){
+
     public void createAccount(String[] userInformation){
         boolean createAccountPossible = true;
-        //if (!firstName.isBlank() && !lastName.isBlank() && !Date.isBlank() && !userName.isBlank() && !password.isBlank() && password.equals(confirmPassword) && !email.isBlank()) {
         if (!userInformation[0].isBlank() && !userInformation[1].isBlank() && !userInformation[2].isBlank() && !userInformation[3].isBlank() && !userInformation[4].isBlank() && userInformation[5].equals(userInformation[4]) && !userInformation[6].isBlank()) {
             try {
             Scanner scanner = new Scanner(new File("src/main/resources/Data"));
@@ -67,7 +66,6 @@ public class User {
                 }
                 scanner.close();
                 FileWriter fileWriter = new FileWriter("src/main/resources/Data");
-                //fileWriter.write(data +firstName + "," + lastName + "," + Date + "," + userName + "," + password + "," + email);
                 String userString = "";
                 for (int i=0;i<userInformation.length-1 ;i++){
                     userString= userString+userInformation[i]+",";
