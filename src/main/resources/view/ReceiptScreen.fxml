@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReceiptController">
+<AnchorPane fx:id="rootPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Receipts.ReceiptController">
    <children>
       <Text fx:id="receiptLabel" layoutX="302.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       <Text fx:id="breadcrumb" layoutX="47.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" />

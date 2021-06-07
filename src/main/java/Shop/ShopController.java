@@ -1,9 +1,9 @@
-package controller;
+package Shop;
 
-import classes.Product;
-import classes.User;
+import Account.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import controller.HomeController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -69,7 +69,7 @@ public class ShopController implements Initializable {
     }
 
     private static File jsonFile() {
-        return new File("src/main/java/classes/products.json");
+        return new File("src/main/resources/products.json");
     }
 
     public void parseData() throws IOException {
