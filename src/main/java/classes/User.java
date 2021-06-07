@@ -37,26 +37,29 @@ public class User {
         return false;
     }
 
-    public void createAccount(String[] userInformation){
+    public boolean createAccountPossible(String[] userInformation) {
         boolean createAccountPossible = true;
         if (!userInformation[0].isBlank() && !userInformation[1].isBlank() && !userInformation[2].isBlank() && !userInformation[3].isBlank() && !userInformation[4].isBlank() && userInformation[5].equals(userInformation[4]) && !userInformation[6].isBlank()) {
             try {
-            Scanner scanner = new Scanner(new File("src/main/resources/Data"));
+                Scanner scanner = new Scanner(new File("src/main/resources/Data"));
 
-            while (scanner.hasNextLine()&&createAccountPossible){
-                String[] userData = scanner.nextLine().split(",");
-                if (userData[3].equals(userInformation[3])){
-                    createAccountPossible = false;
+                while (scanner.hasNextLine() && createAccountPossible) {
+                    String[] userData = scanner.nextLine().split(",");
+                    if (userData[3].equals(userInformation[3])) {
+                        createAccountPossible = false;
+                    }
                 }
+                scanner.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
         } else {
             createAccountPossible = false;
         }
-        if (createAccountPossible){
+        return createAccountPossible;
+    }
+        public void createAccount(String[] userInformation){
+        if (createAccountPossible(userInformation)){
             CreateAccountController.incorrectAccount = false;
             try {
                 Scanner scanner = new Scanner(new File("src/main/resources/Data"));
