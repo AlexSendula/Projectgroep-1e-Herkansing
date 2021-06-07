@@ -36,7 +36,9 @@ public class CreateAccountController {
     public static boolean incorrectAccount = false;
 
     public void createAccount(MouseEvent mouseEvent) throws IOException {
-        User.getInstance().createAccount(firstNameTextField.getText(), lastNameTextField.getText(), String.valueOf(birthDay.getValue()), userNameTextField.getText(), passwordField.getText(), confirmPasswordField.getText(), emailTextField.getText());
+        String[] userInformation = {firstNameTextField.getText(), lastNameTextField.getText(), String.valueOf(birthDay.getValue()), userNameTextField.getText(), passwordField.getText(), confirmPasswordField.getText(), emailTextField.getText()};
+        //User.getInstance(userNameTextField.getText()).createAccount(firstNameTextField.getText(), lastNameTextField.getText(), String.valueOf(birthDay.getValue()), userNameTextField.getText(), passwordField.getText(), confirmPasswordField.getText(), emailTextField.getText());
+        User.getInstance(userNameTextField.getText()).createAccount(userInformation);
 //              TODO: Exceptions maken voor alle ingevulde gegevens. Alle gegevens in bestand opslaan en gebruik maken van een User class. (?)
         if (!incorrectAccount) {
 
@@ -45,7 +47,6 @@ public class CreateAccountController {
         } else {
             incorrectLabel.setVisible(true);
         }
-
     }
 
     public void backButton(MouseEvent mouseEvent) throws  IOException {
