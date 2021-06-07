@@ -44,7 +44,6 @@ public class HomeController implements Initializable {
     }
 
     public void logOutEvent(MouseEvent mouseEvent) throws  IOException {
-        Account.Login.logOut();
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/LoginScreen.fxml"));
         rootPane.getChildren().setAll(pane);
     }

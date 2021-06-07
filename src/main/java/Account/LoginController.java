@@ -27,13 +27,10 @@ public class LoginController implements Initializable {
     private Label incorrectText;
 
     public void login(MouseEvent mouseEvent) throws IOException {
-        //if (Login.getInstance(usernameField.getText(),passwordField.getText()).readData(usernameField.getText(),passwordField.getText())){
         if (Login.readData(usernameField.getText(),passwordField.getText())){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeScreen.fxml"));
             AnchorPane root = loader.load();
             HomeController hC = loader.getController();
-            //hC.setActiveUser(Users.Login.getInstance(usernameField.getText()));
-            //hC.setActiveUser(Login.getInstance(usernameField.getText(),passwordField.getText()).getUser());
             hC.setActiveUser(new User(usernameField.getText(), passwordField.getText()));
             rootPane.getChildren().setAll(root);
         } else {
@@ -50,6 +47,6 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        Account.Login.logOut();
     }
 }

@@ -7,11 +7,6 @@ import java.util.Scanner;
 public class Login {
     private static Login single_instance = null;
 
-    /*private Login(String username, String password){
-        if (readData(username, password)) {
-            this.user = new User(username);
-        }
-    }*/
     private Login(){}
 
     public static Login getInstance(String username, String password) {
