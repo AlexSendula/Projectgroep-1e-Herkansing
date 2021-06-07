@@ -1,26 +1,29 @@
-package Users;
+package Account;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Login {
-    private User user;
     private static Login single_instance = null;
 
-    private Login(String username){
-        this.user = new User(username);
-    }
-
-
-    public static Login getInstance(String username) {
-        if (single_instance == null) {
-            single_instance = new Login(username);
+    /*private Login(String username, String password){
+        if (readData(username, password)) {
+            this.user = new User(username);
         }
-        return single_instance;
+    }*/
+    private Login(){}
+
+    public static Login getInstance(String username, String password) {
+        if (single_instance == null && readData(username, password)) {
+            single_instance = new Login();
+            return single_instance;
+        }
+        return null;
+
     }
 
-    public boolean readData(String inputUsername, String inputPassword) {
+    public static boolean readData(String inputUsername, String inputPassword) {
         try {
             Scanner scanner = new Scanner(new File("src/main/resources/Data"));
             while (scanner.hasNextLine()){
@@ -39,7 +42,4 @@ public class Login {
         single_instance = null;
     }
 
-    public User getUser() {
-        return user;
-    }
 }

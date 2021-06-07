@@ -1,6 +1,5 @@
 package Shop;
 
-import Users.User;
 import org.junit.jupiter.api.Test;
 
 class UserTest {

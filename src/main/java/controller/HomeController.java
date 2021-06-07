@@ -1,7 +1,8 @@
 package controller;
 
-import Users.Login;
-import Users.User;
+import Receipts.ReceiptController;
+import Shop.ShopController;
+import Account.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -43,7 +44,7 @@ public class HomeController implements Initializable {
     }
 
     public void logOutEvent(MouseEvent mouseEvent) throws  IOException {
-        Users.Login.logOut();
+        Account.Login.logOut();
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/LoginScreen.fxml"));
         rootPane.getChildren().setAll(pane);
     }
