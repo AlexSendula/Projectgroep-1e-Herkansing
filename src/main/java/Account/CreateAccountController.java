@@ -1,5 +1,7 @@
 package Account;
 
+import Notifications.MissingOrWrongFields;
+import Notifications.Notification;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.DatePicker;
@@ -39,6 +41,8 @@ public class CreateAccountController {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/LoginScreen.fxml"));
             rootPane.getChildren().setAll(pane);
         } else {
+            Notification notCorrect = new MissingOrWrongFields();
+            incorrectLabel.setText(notCorrect.showNotification());
             incorrectLabel.setVisible(true);
         }
     }

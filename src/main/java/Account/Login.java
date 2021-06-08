@@ -33,6 +33,7 @@ public class Login {
         }
         return false;
     }
+
     public static void logOut(){
         single_instance = null;
     }

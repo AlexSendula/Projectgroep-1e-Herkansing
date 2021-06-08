@@ -1,5 +1,7 @@
 package Account;
 
+import Notifications.Notification;
+import Notifications.WrongCombination;
 import controller.HomeController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +36,8 @@ public class LoginController implements Initializable {
             hC.setActiveUser(new User(usernameField.getText(), passwordField.getText()));
             rootPane.getChildren().setAll(root);
         } else {
+            Notification wrong = new WrongCombination();
+            incorrectText.setText(wrong.showNotification());
             incorrectText.setVisible(true);
         }
     }
