@@ -43,16 +43,8 @@ public class ShopController implements Initializable {
     @FXML
     private TableColumn<Product, Double> priceColumn;
 
-    public ShopController() {
-    }
 
-//    @FXML
-//    private TableColumn<Product, ?> linkColumn;
-
-    public void initData(User activeUser) {
-        user = activeUser;
-    }
-
+    //JavaFX general Functions
     @FXML
     void home(MouseEvent mouseEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeScreen.fxml"));
@@ -64,28 +56,23 @@ public class ShopController implements Initializable {
         rootPane.getChildren().setAll(root);
     }
 
-    public void gsonParser(MouseEvent mouseEvent) {
-
+    //IDK, but dont touch please.
+    public ShopController() {
     }
 
-    private static File jsonFile() {
-        return new File("src/main/resources/products.json");
+    public void initData(User activeUser) {
+        user = activeUser;
     }
 
-    public void parseData() throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        productList = mapper.readValue(jsonFile(), new TypeReference<>(){});
+//    public void gsonParser(MouseEvent mouseEvent) {
+//    }
 
-    }
 
-    public ObservableList<Product> getProduct() {
-        ObservableList<Product> products = FXCollections.observableArrayList();
-        for(Product product : productList) { products.add(product); }
-        return products;
-    }
-
+    //Setting up tableview and populating with data
+    //Table setup
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         try {
             parseData();
         } catch ( Exception e) {
@@ -97,5 +84,45 @@ public class ShopController implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 
         shopTable.setItems(getProduct());
+
+        shopTable.setOnMouseClicked(mouseEvent -> {
+            try {
+                getDetailedProductView();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    //Load data
+    private static File jsonFile() {
+        return new File("src/main/resources/products.json");
+    }
+
+    public void parseData() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        productList = mapper.readValue(jsonFile(), new TypeReference<>(){});
+    }
+
+    public ObservableList<Product> getProduct() {
+        ObservableList<Product> products = FXCollections.observableArrayList();
+        for(Product product : productList) { products.add(product); }
+        return products;
+    }
+
+    public void setActiveUser(User activeUser) {
+        user = activeUser;
+    }
+
+    //Table functions
+    private void getDetailedProductView() throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ProductScreen.fxml"));
+        AnchorPane root = loader.load();
+
+        ProductController pC = loader.getController();
+        pC.initData(shopTable.getSelectionModel().getSelectedItem(), user);
+
+        rootPane.getChildren().setAll(root);
     }
 }
