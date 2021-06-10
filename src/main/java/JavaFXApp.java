@@ -12,7 +12,7 @@ public class JavaFXApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/LoginScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/HomeScreen.fxml"));
 
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("ZeroXess");

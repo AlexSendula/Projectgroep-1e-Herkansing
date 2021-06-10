@@ -42,6 +42,7 @@ public class ShopController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeScreen.fxml"));
         AnchorPane root = loader.load();
 
+
         HomeController hC = loader.getController();
         hC.setActiveUser(user);
 

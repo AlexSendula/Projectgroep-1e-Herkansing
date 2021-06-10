@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Home.HomeController">
    <children>
       <Label layoutX="47.0" layoutY="40.0" text="Welcome to home screen!" />
       <Button fx:id="backButton" layoutX="47.0" layoutY="76.0" mnemonicParsing="false" onMouseClicked="#shop" text="Shop">
