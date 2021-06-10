@@ -1,4 +1,4 @@
-package controller;
+package Home;
 
 import Receipts.ReceiptController;
 import Shop.ShopController;

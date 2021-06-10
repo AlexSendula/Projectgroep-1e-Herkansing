@@ -1,7 +1,7 @@
 package Receipts;
 
 import Account.User;
-import controller.HomeController;
+import Home.HomeController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

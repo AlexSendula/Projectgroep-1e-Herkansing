@@ -2,7 +2,7 @@ package Account;
 
 import Notifications.Notification;
 import Notifications.WrongCombination;
-import controller.HomeController;
+import Home.HomeController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
