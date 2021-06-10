@@ -3,15 +3,17 @@ package Shop;
 import Account.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import controller.HomeController;
+import Home.HomeController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -23,25 +25,15 @@ import java.util.*;
 
 public class ShopController implements Initializable {
     private User user;
-    private List<Product> productList;
+    private List<Product> productData;
 
-    @FXML
-    private Button homeButton;
-
-    @FXML
-    private AnchorPane rootPane;
-
-    @FXML
-    private TableView<Product> shopTable;
-
-    @FXML
-    private TableColumn<Product, String> categoryColumn;
-
-    @FXML
-    private TableColumn<Product, String> nameColumn;
-
-    @FXML
-    private TableColumn<Product, Double> priceColumn;
+    @FXML private AnchorPane rootPane;
+    @FXML private TableView<Product> shopTable;
+    @FXML private TextField filterField;
+    @FXML private TableColumn<Product, String> categoryColumn;
+    @FXML private TableColumn<Product, String> nameColumn;
+    @FXML private TableColumn<Product, Double> priceColumn;
+    private ObservableList<Product> productList = FXCollections.observableArrayList();
 
 
     //JavaFX general Functions
@@ -56,6 +48,7 @@ public class ShopController implements Initializable {
         rootPane.getChildren().setAll(root);
     }
 
+
     //IDK, but dont touch please.
     public ShopController() {
     }
@@ -64,49 +57,50 @@ public class ShopController implements Initializable {
         user = activeUser;
     }
 
-//    public void gsonParser(MouseEvent mouseEvent) {
-//    }
-
 
     //Setting up tableview and populating with data
-    //Table setup
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        //parseData();
         try {
             parseData();
         } catch ( Exception e) {
             e.printStackTrace();
         }
 
+        //Table setup
         categoryColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("categories"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 
-        shopTable.setItems(getProduct());
+        shopTable.setItems(getProductList());
 
+        //On click mouse event
         shopTable.setOnMouseClicked(mouseEvent -> {
-            try {
-                getDetailedProductView();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (mouseEvent.getClickCount() == 2) {
+                try {
+                    getDetailedProductView();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
-    //Load data
-    private static File jsonFile() {
+    //Load table data
+    private static File productJsonFile() {
         return new File("src/main/resources/products.json");
     }
 
     public void parseData() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        productList = mapper.readValue(jsonFile(), new TypeReference<>(){});
+        productData = mapper.readValue(productJsonFile(), new TypeReference<>(){});
     }
 
-    public ObservableList<Product> getProduct() {
+    public ObservableList<Product> getProductList() {
         ObservableList<Product> products = FXCollections.observableArrayList();
-        for(Product product : productList) { products.add(product); }
+        for(Product product : productData) { products.add(product); }
         return products;
     }
 
