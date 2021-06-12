@@ -75,7 +75,35 @@ public class ShopController implements Initializable {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 
-        shopTable.setItems(getProductList());
+        //Search filter
+        productList.addAll(productData);
+
+        FilteredList<Product> filteredList = new FilteredList<>(productList, b -> true);
+
+        filterField.textProperty().addListener(((observableValue, oldValue, newValue) -> {
+            filteredList.setPredicate(product -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                for (String c : product.getCategories()) {
+                    if (c.toLowerCase().contains(lowerCaseFilter)) {
+                        return true;
+                    }
+                }
+                return false;
+            });
+        }));
+
+        SortedList<Product> sortedList = new SortedList<>(filteredList);
+
+        sortedList.comparatorProperty().bind(shopTable.comparatorProperty());
+
+        //Setting table items
+//        shopTable.setItems(getProductList());
+        shopTable.setItems(sortedList);
 
         //On click mouse event
         shopTable.setOnMouseClicked(mouseEvent -> {
