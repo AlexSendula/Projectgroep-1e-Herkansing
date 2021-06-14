@@ -17,7 +17,7 @@ class ReceiptTest {
         ArrayList<String> producten = new ArrayList<>();
         producten.add("Houtbalk");
         producten.add("Schroef");
-        new Receipt("Arman",producten,10).writeReceipt(bonNummer);
+        //new Receipt("Arman",producten,10).writeReceipt(bonNummer);
         String resultaat = "Customer Arman has purchased the following products:\n" +
                 "Houtbalk, Schroef, \n" +
                 "The total price: 100.0.\n" +
