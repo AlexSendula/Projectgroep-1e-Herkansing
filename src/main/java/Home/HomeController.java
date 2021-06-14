@@ -1,6 +1,7 @@
 package Home;
 
 import Receipts.ReceiptController;
+import Rewards.RewardController;
 import Shop.ShopController;
 import Account.User;
 import javafx.fxml.FXML;
@@ -26,6 +27,14 @@ public class HomeController implements Initializable {
         ShopController sC = loader.getController();
         sC.initData(user);
 
+        rootPane.getChildren().setAll(root);
+    }
+
+    public void rewards(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/RewardScreen.fxml"));
+        AnchorPane root = loader.load();
+        RewardController rC = loader.getController();
+        rC.initData(user);
         rootPane.getChildren().setAll(root);
     }
 

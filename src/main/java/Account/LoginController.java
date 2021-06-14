@@ -33,7 +33,8 @@ public class LoginController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeScreen.fxml"));
             AnchorPane root = loader.load();
             HomeController hC = loader.getController();
-            hC.setActiveUser(new User(usernameField.getText(), passwordField.getText()));
+            User user =new User(usernameField.getText(), passwordField.getText());
+            hC.setActiveUser(user);
             rootPane.getChildren().setAll(root);
         } else {
             Notification wrong = new WrongCombination();
