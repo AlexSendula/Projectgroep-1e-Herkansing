@@ -57,14 +57,6 @@ public class Product {
         return categories;
     }
 
-    public void setButton() {
-        this.button = new Button("Buy");
-    }
-
-    public Button getButton() {
-        return button;
-    }
-
 }
 
 
