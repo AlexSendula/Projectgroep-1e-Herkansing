@@ -11,6 +11,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -33,6 +34,7 @@ public class ShopController implements Initializable {
     @FXML private TableColumn<Product, String> categoryColumn;
     @FXML private TableColumn<Product, String> nameColumn;
     @FXML private TableColumn<Product, Double> priceColumn;
+    @FXML private TableColumn<Product, Button> buyColumn;
     private ObservableList<Product> productList = FXCollections.observableArrayList();
 
 
@@ -78,6 +80,7 @@ public class ShopController implements Initializable {
         categoryColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("categories"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
+        buyColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("buyColumn"));
 
         //Search filter
         productList.addAll(productData);
@@ -133,7 +136,10 @@ public class ShopController implements Initializable {
 
     public ObservableList<Product> getProductList() {
         ObservableList<Product> products = FXCollections.observableArrayList();
-        for(Product product : productData) { products.add(product); }
+        for(Product product : productData) {
+            product.setButton();
+            products.add(product);
+        }
         return products;
     }
 

@@ -3,6 +3,7 @@ package Shop;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javafx.scene.control.Button;
 
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ public class Product {
     private double price;
     private long stock;
     private ArrayList<String> categories;
+    private Button button;
 
 
     public Product() {
@@ -28,6 +30,7 @@ public class Product {
         this.price = price;
         this.stock = stock;
         this.categories = categories;
+        this.button = new Button("Buy");
     }
 
     public long getId() {
@@ -53,6 +56,15 @@ public class Product {
     public ArrayList<String> getCategories() {
         return categories;
     }
+
+    public void setButton() {
+        this.button = new Button("Buy");
+    }
+
+    public Button getButton() {
+        return button;
+    }
+
 }
 
 
