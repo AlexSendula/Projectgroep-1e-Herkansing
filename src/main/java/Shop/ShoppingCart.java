@@ -17,4 +17,12 @@ public class ShoppingCart {
     public void addToCart(Product product){
         this.products.add(product);
     }
+
+    public double getTotalPrice(){
+        double totalPrice = 0;
+        for (int n = 0; n<this.getProducts().size(); n++){
+            totalPrice = totalPrice + this.getProducts().get(n).getPrice();
+        }
+        return totalPrice;
+    }
 }
