@@ -33,6 +33,7 @@ public class ShopController implements Initializable {
     @FXML private TableColumn<Product, String> nameColumn;
     @FXML private TableColumn<Product, Double> priceColumn;
     @FXML private Label orderPlacedText;
+    @FXML private Label totalPriceLabel;
     private ObservableList<Product> productList = FXCollections.observableArrayList();
 
 
@@ -57,6 +58,12 @@ public class ShopController implements Initializable {
         user.getShoppingCart().getProducts().clear();
     }
 
+    @FXML
+    void clearCart(MouseEvent mouseEvent)throws IOException {
+        user.getShoppingCart().getProducts().clear();
+        updateTotalPriceLabel();
+    }
+
 
     //IDK, but dont touch please.
     public ShopController() {
@@ -64,6 +71,11 @@ public class ShopController implements Initializable {
 
     public void initData(User activeUser) {
         user = activeUser;
+        updateTotalPriceLabel();
+    }
+
+    public void updateTotalPriceLabel(){
+        totalPriceLabel.setText(String.valueOf(user.getShoppingCart().getTotalPrice()));
     }
 
 
@@ -124,6 +136,7 @@ public class ShopController implements Initializable {
                 }
             }
         });
+
     }
 
     //Load table data

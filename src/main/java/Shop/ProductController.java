@@ -42,6 +42,7 @@ public class ProductController implements Initializable {
 
         ShopController sC = loader.getController();
         sC.setActiveUser(user);
+        sC.updateTotalPriceLabel();
 
         rootPane.getChildren().setAll(root);
     }
