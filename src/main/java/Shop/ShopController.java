@@ -48,6 +48,10 @@ public class ShopController implements Initializable {
 
         rootPane.getChildren().setAll(root);
     }
+    @FXML
+    void order(MouseEvent mouseEvent) throws IOException {
+
+    }
 
 
     //IDK, but dont touch please.

@@ -1,6 +1,7 @@
 package Receipts;
 
 import Account.User;
+import Shop.ShoppingCart;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,12 +17,17 @@ public class Receipt {
     private double totalPrice;
     private double discountPercentage;
     public double priceAfterDiscount;
+    private ShoppingCart cart;
 
-    public Receipt(String nameClient, ArrayList<String> products, double discountPercentage) {
+    public Receipt(String nameClient, ArrayList<String> products, double discountPercentage, ShoppingCart cart) {
+        this.cart = cart;
         this.nameClient = nameClient;
         this.products = products;
         this.discountPercentage = discountPercentage;
-        this.totalPrice = 100; //TODO: Alle prijzen van producten op tellen die in arraylist zitten
+        this.totalPrice = 0;
+        for (int n = 0; n<this.cart.getProducts().size(); n++){
+            this.totalPrice = this.totalPrice + this.cart.getProducts().get(n).getPrice();
+        }
         this.priceAfterDiscount = Math.round((totalPrice * (1 - discountPercentage / 100)) * 100) / 100; //TODO: Afronden op twee decimalen
     }
 
