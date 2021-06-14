@@ -1,6 +1,8 @@
 package Receipts;
 
 import Account.User;
+import Shop.Product;
+import Shop.ShoppingCart;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,16 +14,20 @@ import static java.lang.Integer.parseInt;
 
 public class Receipt {
     private String nameClient;
-    private ArrayList<String> products; //TODO: Naar product object veranderen? Verbinden aan product/item klasse.
     private double totalPrice;
     private double discountPercentage;
     public double priceAfterDiscount;
+    private ShoppingCart cart;
 
-    public Receipt(String nameClient, ArrayList<String> products, double discountPercentage) {
-        this.nameClient = nameClient;
-        this.products = products;
-        this.discountPercentage = discountPercentage;
-        this.totalPrice = 100; //TODO: Alle prijzen van producten op tellen die in arraylist zitten
+    public Receipt(User activeUser) {
+        this.cart = activeUser.getShoppingCart();
+        this.nameClient = activeUser.getUsername();
+        //this.products = products;
+        //this.discountPercentage = discountPercentage;
+        this.totalPrice = 0;
+        for (int n = 0; n<this.cart.getProducts().size(); n++){
+            this.totalPrice = this.totalPrice + this.cart.getProducts().get(n).getPrice();
+        }
         this.priceAfterDiscount = Math.round((totalPrice * (1 - discountPercentage / 100)) * 100) / 100; //TODO: Afronden op twee decimalen
     }
 
@@ -50,8 +56,8 @@ public class Receipt {
         try {
             FileWriter writer = new FileWriter("src/main/resources/Receipts/receipt" + receiptNumber + "-" + this.nameClient + ".txt");
             String text = "Customer " + this.nameClient + " has purchased the following products:\n";
-            for (String product : this.products) {
-                text = text + product + ", ";
+            for (Product product : this.cart.getProducts()) {
+                text = text + product.getName() + ", ";
             }
             text = text + "\nThe total price: " + this.totalPrice + ".\nYour discount is: " + discountPercentage + "%.\n" + "Your price after discount: " + this.priceAfterDiscount + ".";
 

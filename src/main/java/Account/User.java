@@ -16,4 +16,8 @@ public class User {
     public String getUsername() {
         return this.username;
     }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
 }

@@ -1,6 +1,7 @@
 package Shop;
 
 import Account.User;
+import Receipts.Receipt;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import Home.HomeController;
@@ -11,9 +12,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -33,6 +32,7 @@ public class ShopController implements Initializable {
     @FXML private TableColumn<Product, String> categoryColumn;
     @FXML private TableColumn<Product, String> nameColumn;
     @FXML private TableColumn<Product, Double> priceColumn;
+    @FXML private Label orderPlacedText;
     private ObservableList<Product> productList = FXCollections.observableArrayList();
 
 
@@ -47,6 +47,14 @@ public class ShopController implements Initializable {
         hC.setActiveUser(user);
 
         rootPane.getChildren().setAll(root);
+    }
+    @FXML
+    void order(MouseEvent mouseEvent) throws IOException {
+        if (user.getShoppingCart().getProducts().size()>0) {
+            new Receipt(user).writeReceipt(Receipt.receiptNumber());
+            orderPlacedText.setVisible(true);
+        }
+        user.getShoppingCart().getProducts().clear();
     }
 
 
@@ -69,7 +77,7 @@ public class ShopController implements Initializable {
         } catch ( Exception e) {
             e.printStackTrace();
         }
-
+        orderPlacedText.setVisible(false);
         //Table setup
         categoryColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("categories"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
@@ -98,6 +106,7 @@ public class ShopController implements Initializable {
         }));
 
         SortedList<Product> sortedList = new SortedList<>(filteredList);
+
 
         sortedList.comparatorProperty().bind(shopTable.comparatorProperty());
 
@@ -129,7 +138,9 @@ public class ShopController implements Initializable {
 
     public ObservableList<Product> getProductList() {
         ObservableList<Product> products = FXCollections.observableArrayList();
-        for(Product product : productData) { products.add(product); }
+        for(Product product : productData) {
+            products.add(product);
+        }
         return products;
     }
 
