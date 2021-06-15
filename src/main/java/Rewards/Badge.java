@@ -3,6 +3,7 @@ package Rewards;
 public abstract class Badge {
     protected String name;
     protected double discountPercentage;
+
     protected Badge(){
 
     }

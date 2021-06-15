@@ -2,11 +2,13 @@ package Rewards;
 
 import Account.User;
 import Home.HomeController;
+import Rewards.Jobs.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -20,6 +22,7 @@ public class RewardController implements Initializable {
     private AnchorPane rootPane;
     @FXML private Label currentBadge;
     @FXML private Label currentDiscount;
+    @FXML private TextArea jobsKnowledge;
     @FXML private ChoiceBox<Job> jobsChoiceBox;
 
     public void initData(User activeUser) {
@@ -46,13 +49,22 @@ public class RewardController implements Initializable {
             }
         }
         if (addJobTrue){
+            jobsChoiceBox.getSelectionModel().getSelectedItem().addKnowledge(jobsKnowledge.getText());
             user.addJob(jobsChoiceBox.getSelectionModel().getSelectedItem());
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        jobsChoiceBox.getItems().add(new Job());
-        jobsChoiceBox.getItems().add(new Job());
+        jobsChoiceBox.getItems().add(new Baker());
+        jobsChoiceBox.getItems().add(new Carpenter());
+        jobsChoiceBox.getItems().add(new Dentist());
+        jobsChoiceBox.getItems().add(new Doctor());
+        jobsChoiceBox.getItems().add(new Farmer());
+        jobsChoiceBox.getItems().add(new Pirate());
+        jobsChoiceBox.getItems().add(new Plumber());
+        jobsChoiceBox.getItems().add(new Police());
+        jobsChoiceBox.getItems().add(new Ranger());
+        jobsChoiceBox.getItems().add(new Teacher());
     }
 }
