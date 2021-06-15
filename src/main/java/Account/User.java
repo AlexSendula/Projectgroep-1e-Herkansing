@@ -30,14 +30,13 @@ public class User {
     private ArrayList<Job> jobs;
 
     public User() {
-
+        this.shoppingCart = new ShoppingCart();
     }
 
-    public User(String username, String password){
+    public User(String username){
         this.badge = new NoBadge();
         this.shoppingCart = new ShoppingCart();
         this.username = username;
-        this.login = Login.getInstance(this.username, password);
         this.jobs = new ArrayList<>();
     }
 

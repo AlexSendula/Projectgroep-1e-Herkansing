@@ -2,6 +2,6 @@ package Rewards.Jobs;
 
 public class Teacher extends Job {
     public Teacher() {
-        setName("Teacher");
+        this.name = "Teacher";
     }
 }

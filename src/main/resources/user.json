@@ -6,10 +6,10 @@
     "username": "dylan",
     "password": "123",
     "email": "18094171@student.hhs.nl",
-    "badge": {"name": "SilverBadge", "discountPercentage": "10"},
+    "badge": {"name": "Gold"},
     "jobs": [
-      {"job": "Pirate", "knowledge": "No scope met zwaard"},
-      {"job": "Carpenter", "knowledge": "Hamer zwaaien"}
+      {"name": "Pirate", "knowledge": "No scope met zwaard"},
+      {"name": "Carpenter", "knowledge": "Hamer zwaaien"}
     ]
   },
   {
@@ -19,10 +19,10 @@
     "username": "alex",
     "password": "321",
     "email": "12346578@student.hhs.nl",
-    "badge": {"name": "Konjo", "discountPercentage": "10"},
+    "badge": {"name": "Gold"},
     "jobs": [
-      {"job": "Police", "knowledge": "Schiet die boy in zn nek"},
-      {"job": "Baker", "knowledge": "Bak die shit goed"}
+      {"name": "Police", "knowledge": "Schiet die boy in zn nek"},
+      {"name": "Baker", "knowledge": "Bak die shit goed"}
     ]
   }
 ]
