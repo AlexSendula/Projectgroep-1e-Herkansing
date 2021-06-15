@@ -6,6 +6,7 @@ import Home.HomeController;
 import Rewards.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -37,7 +38,7 @@ public class LoginController implements Initializable {
     @FXML
     private Label incorrectText;
 
-    public void login(MouseEvent mouseEvent) throws IOException {
+    public void login(ActionEvent Event) throws IOException {
         User user = Login.checkData(usernameField.getText(),passwordField.getText(), userList);
         if (user != null) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeScreen.fxml"));
