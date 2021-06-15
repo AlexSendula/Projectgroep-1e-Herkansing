@@ -1,7 +1,7 @@
 package Account;
 
 import Rewards.Badge;
-import Rewards.Job;
+import Rewards.Jobs.Job;
 import Rewards.NoBadge;
 import Shop.ShoppingCart;
 
