@@ -1,7 +1,13 @@
 package Account;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Login {
@@ -32,6 +38,15 @@ public class Login {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static User checkData(String username, String password, List<User> userList) {
+        for(User user : userList) {
+            if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                return user;
+            }
+        }
+        return null;
     }
 
     public static void logOut(){

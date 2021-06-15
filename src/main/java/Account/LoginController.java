@@ -3,6 +3,8 @@ package Account;
 import Notifications.Notification;
 import Notifications.WrongCombination;
 import Home.HomeController;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,12 +14,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
 public class LoginController implements Initializable {
+    private ArrayList<User> userList;
 
     @FXML
     private AnchorPane rootPane;
@@ -29,11 +36,11 @@ public class LoginController implements Initializable {
     private Label incorrectText;
 
     public void login(MouseEvent mouseEvent) throws IOException {
-        if (Login.readData(usernameField.getText(),passwordField.getText())){
+        User user = Login.checkData(usernameField.getText(),passwordField.getText(), userList);
+        if (user != null) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeScreen.fxml"));
             AnchorPane root = loader.load();
             HomeController hC = loader.getController();
-            User user =new User(usernameField.getText(), passwordField.getText());
             hC.setActiveUser(user);
             rootPane.getChildren().setAll(root);
         } else {
@@ -48,10 +55,23 @@ public class LoginController implements Initializable {
         rootPane.getChildren().setAll(pane);
     }
 
+    private static File productJsonFile() {
+        return new File("src/main/resources/user.json");
+    }
 
+    public void parseData() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        userList = mapper.readValue(productJsonFile(), new TypeReference<>(){});
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Account.Login.logOut();
+
+        try {
+            parseData();
+        } catch ( Exception e) {
+            e.printStackTrace();
+        }
     }
 }
