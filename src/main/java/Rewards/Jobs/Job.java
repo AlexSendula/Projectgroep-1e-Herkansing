@@ -1,10 +1,18 @@
 package Rewards.Jobs;
 
-public abstract class Job {
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class Job {
+    @JsonProperty("job")
     private String name;
+    @JsonProperty("knowledge")
     private String knowledge;
 
-    protected Job(String name){
+    public Job() {
+
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 
