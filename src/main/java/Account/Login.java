@@ -15,7 +15,17 @@ public class Login {
 
     private Login(){}
 
-    public static Login getInstance(String username, String password) {
+    public static User checkData(String username, String password, List<User> userList) {
+        for(User user : userList) {
+            if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    //Oude login methode
+    /* public static Login getInstance(String username, String password) {
         if (single_instance == null && readData(username, password)) {
             single_instance = new Login();
             return single_instance;
@@ -38,16 +48,8 @@ public class Login {
             e.printStackTrace();
         }
         return false;
-    }
+    } */
 
-    public static User checkData(String username, String password, List<User> userList) {
-        for(User user : userList) {
-            if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                return user;
-            }
-        }
-        return null;
-    }
 
     public static void logOut(){
         single_instance = null;

@@ -4,7 +4,7 @@ public class Badge {
     protected String name;
     protected double discountPercentage;
 
-    public Badge(){
+    protected Badge(){
 
     }
 

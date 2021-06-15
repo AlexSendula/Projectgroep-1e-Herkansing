@@ -3,6 +3,7 @@ package Account;
 import Notifications.Notification;
 import Notifications.WrongCombination;
 import Home.HomeController;
+import Rewards.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
@@ -25,6 +26,7 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
     private ArrayList<User> userList;
+    private ArrayList<Badge> badges = new ArrayList<>();
 
     @FXML
     private AnchorPane rootPane;
@@ -41,6 +43,13 @@ public class LoginController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeScreen.fxml"));
             AnchorPane root = loader.load();
             HomeController hC = loader.getController();
+
+            for(Badge b : badges){
+                if(user.getBadge().getName().equals(b.getName())) {
+                    user.setBadge(b);
+                }
+            }
+
             hC.setActiveUser(user);
             rootPane.getChildren().setAll(root);
         } else {
@@ -67,6 +76,10 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Account.Login.logOut();
+        badges.add(new GoldBadge());
+        badges.add(new SilverBadge());
+        badges.add(new BronzeBadge());
+        badges.add(new NoBadge());
 
         try {
             parseData();

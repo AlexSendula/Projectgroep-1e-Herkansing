@@ -3,12 +3,12 @@ package Rewards.Jobs;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Job {
-    @JsonProperty("job")
-    private String name;
+    @JsonProperty("name")
+    protected String name;
     @JsonProperty("knowledge")
-    private String knowledge;
+    protected String knowledge;
 
-    public Job() {
+    protected Job() {
 
     }
 
