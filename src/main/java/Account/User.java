@@ -1,8 +1,7 @@
 package Account;
 
-import Rewards.Badge;
+import Rewards.*;
 import Rewards.Jobs.Job;
-import Rewards.NoBadge;
 import Shop.ShoppingCart;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
