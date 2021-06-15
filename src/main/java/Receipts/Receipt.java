@@ -24,7 +24,7 @@ public class Receipt {
         this.nameClient = activeUser.getUsername();
         this.discountPercentage = activeUser.getBadge().getDiscountPercentage();
         this.totalPrice = this.cart.getTotalPrice();
-        this.priceAfterDiscount = Math.round((totalPrice * (1 - discountPercentage / 100)) * 100) / 100; //TODO: Afronden op twee decimalen
+        this.priceAfterDiscount = ((double) Math.round((totalPrice * (1.00 - discountPercentage / 100)) * 100))/100;
     }
 
     public static int receiptNumber() {
