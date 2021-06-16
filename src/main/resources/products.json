@@ -52,5 +52,17 @@
       "Meuebelen",
       "Sale"
     ]
+  },
+  {
+    "productId": "623456",
+    "name": "sgfasgfadg",
+    "description": "Een elektrisch asdfdasf.",
+    "price": "12.49",
+    "stock": "13",
+    "categories": [
+      "Elektronica",
+      "Meuebelen",
+      "Sale"
+    ]
   }
 ]

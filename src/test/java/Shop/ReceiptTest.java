@@ -1,45 +1,36 @@
 package Shop;
 
+import Account.User;
 import Receipts.Receipt;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+
 class ReceiptTest {
+
     @Test
-    void schrijfBon() {
-        int bonNummer = Receipt.receiptNumber();
-        ArrayList<String> producten = new ArrayList<>();
-        producten.add("Houtbalk");
-        producten.add("Schroef");
-        //new Receipt("Arman",producten,10).writeReceipt(bonNummer);
-        String resultaat = "Customer Arman has purchased the following products:\n" +
-                "Houtbalk, Schroef, \n" +
-                "The total price: 100.0.\n" +
-                "Your discount is: 10.0%.\n" +
-                "Your price after discount: 90.0";
-        String foutResultaat = "Customer Arman has purchased the following products:\n" +
-                "Houtbalk, Schroef, \n" +
-                "The total price: 120.0.\n" +
-                "Your discount is: 20.0%.\n" +
-                "Your price after discount: 80.0";
-        String input = "";
-        try {
-            Scanner scanner = new Scanner(new File("src/main/resources/Receipts/receipt"+bonNummer+".txt"));
-            while (scanner.hasNextLine()) {
-                input = input+scanner.nextLine()+"\n";
-            }
-            input.substring(0,input.length()-1);
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        assertTrue(input.contains(resultaat));
-        assertFalse(foutResultaat.contains(input));
+    void testToString() throws IOException {
+        ShopController shop = new ShopController();
+        User user = new User("Jan","Hendrik");
+        shop.parseData();
+        ArrayList<Product> products = new ArrayList<>(shop.getProductList());
+        user.getShoppingCart().addToCart(products.get(0));
+        user.getShoppingCart().addToCart(products.get(1));
+        Receipt receipt = new Receipt(user);
+        assertTrue(receipt.toString().equals("Customer Jan has purchased the following products:\n" +
+                "Laptop, Televisie.\n" +
+                "The total price: 644.98.\n" +
+                "Your discount is: 0.0%.\n" +
+                "Your price after discount: 644.98"));
+        assertFalse(receipt.toString().equals("Customer Hendrik has purchased the following products:\n" +
+                "Laptop, Televisie.\n" +
+                "The total price: 644.98.\n" +
+                "Your discount is: 0.0%.\n" +
+                "Your price after discount: 644.98"));
     }
 }

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CreateAccountTest {
 
+    //Coverage: decision
     @Test
      void createAccountPossible() {
         String[] userInfo = {"Kees", "Jan", "2021-06-09", "Jan", "wachtwoord", "wachtwoord", "hendrik@asd.nl"};

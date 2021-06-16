@@ -28,7 +28,7 @@ public class Receipt {
         this.nameClient = activeUser.getUsername();
         this.discountPercentage = activeUser.getBadge().getDiscountPercentage();
         this.totalPrice = this.cart.getTotalPrice();
-        this.priceAfterDiscount = Math.round((totalPrice * (1 - discountPercentage / 100)) * 100) / 100; //TODO: Afronden op twee decimalen
+        this.priceAfterDiscount = ((double) Math.round((totalPrice * (1.00 - discountPercentage / 100)) * 100))/100;
     }
 
     public static int receiptNumber() {
@@ -55,6 +55,7 @@ public class Receipt {
     public void writeReceipt(int receiptNumber) {
         try {
             FileWriter writer = new FileWriter("src/main/resources/Receipts/receipt" + receiptNumber + "-" + this.nameClient + ".txt");
+
             String text = "Customer " + this.nameClient + " has purchased the following products:\n";
             for (Product product : this.cart.getProduct()) {
                 text = text + product.getName() + ", ";
@@ -63,10 +64,24 @@ public class Receipt {
 
             text = text.substring(0, text.length() - 1);
             writer.write(text);
+
+            writer.write(this.toString());
+
             writer.close();
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+    }
+
+    @Override public String toString(){
+        String text = "Customer " + this.nameClient + " has purchased the following products:\n";
+        for (Product product : this.cart.getProducts()) {
+            text = text + product.getName() + ", ";
+        }
+        text = text.substring(0, text.length() - 2)+".";
+        text = text + "\nThe total price: " + this.totalPrice + ".\nYour discount is: " + discountPercentage + "%.\n" + "Your price after discount: " + this.priceAfterDiscount + ".";
+        text = text.substring(0, text.length() - 1);
+        return text;
     }
 
     public static String readReceipt(String fileName) {
