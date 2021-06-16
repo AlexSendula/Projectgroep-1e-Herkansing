@@ -39,7 +39,8 @@ public class LoginController implements Initializable {
     private Label incorrectText;
 
     public void login(ActionEvent Event) throws IOException {
-        User user = Login.checkData(usernameField.getText(),passwordField.getText(), userList);
+        String[] loginData = {usernameField.getText(),passwordField.getText()};
+        User user = Login.checkData(loginData, userList);
         if (user != null) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeScreen.fxml"));
             AnchorPane root = loader.load();

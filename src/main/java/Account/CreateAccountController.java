@@ -78,6 +78,10 @@ public class CreateAccountController implements Initializable {
         userList = mapper.readValue(productJsonFile(), new TypeReference<>(){});
     }
 
+    public ArrayList<User> getUserList() {
+        return userList;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {

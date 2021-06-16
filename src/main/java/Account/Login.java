@@ -15,9 +15,9 @@ public class Login {
 
     private Login(){}
 
-    public static User checkData(String username, String password, List<User> userList) {
+    public static User checkData(String[] logInInfo, List<User> userList) {
         for(User user : userList) {
-            if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
+            if(user.getUsername().equals(logInInfo[0]) && user.getPassword().equals(logInInfo[1])) {
                 return user;
             }
         }
