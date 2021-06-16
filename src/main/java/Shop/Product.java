@@ -2,6 +2,7 @@ package Shop;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.scene.control.Button;
 
@@ -11,8 +12,11 @@ import java.util.ArrayList;
 public class Product {
     @JsonProperty("productId")
     private long id;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("description")
     private String description;
+    @JsonProperty("price")
     private double price;
     private long stock;
     private ArrayList<String> categories;

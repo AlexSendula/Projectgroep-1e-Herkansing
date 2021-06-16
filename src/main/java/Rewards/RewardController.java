@@ -5,11 +5,6 @@ import Home.HomeController;
 import Rewards.Jobs.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,11 +15,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class RewardController implements Initializable {
     private User user;
@@ -64,20 +61,58 @@ public class RewardController implements Initializable {
         }
 
         if (addJobTrue){
-            for(User u : userList) {
-                if(points < 2) {
-                    u.setBadge(new GoldBadge());
-                }
-                else if(points < 4) {
-                    u.setBadge(new SilverBadge());
-                }
-                else if(points < 6) {
-                    u.setBadge(new BronzeBadge());
-                }
-            }
             jobsChoiceBox.getSelectionModel().getSelectedItem().addKnowledge(jobsKnowledge.getText());
             user.addJob(jobsChoiceBox.getSelectionModel().getSelectedItem());
+
+            points--;
+            updateBadges(points, user);
+
+            Badge badge = new Badge();
+
+            if(points < 2) {
+                badge = new GoldBadge();
+            }
+            else if(points < 4) {
+                badge = new SilverBadge();
+            }
+            else if(points < 6) {
+                badge = new BronzeBadge();
+            }
+
+            for(int i = 0; i < userList.size(); i++) {
+                if(userList.get(i).getEmail().equals(user.getEmail())) {
+                    userList.get(i).setBadge(badge);
+                    userList.get(i).addJob(jobsChoiceBox.getSelectionModel().getSelectedItem());
+                }
+            }
+            writeJSON();
         }
+    }
+
+    public void writeJSON() throws IOException {
+        try {
+            FileWriter fileWriter = new FileWriter("src/main/resources/user.json");
+
+            ObjectMapper mapper = new ObjectMapper();
+            String json = mapper.writeValueAsString(userList);
+
+            fileWriter.write(json);
+            fileWriter.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateBadges(int points, User user) {
+            if(points < 2) {
+                user.setBadge(new GoldBadge());
+            }
+            else if(points < 4) {
+                user.setBadge(new SilverBadge());
+            }
+            else if(points < 6) {
+                user.setBadge(new BronzeBadge());
+            }
     }
 
     private static File userJsonFile() {
