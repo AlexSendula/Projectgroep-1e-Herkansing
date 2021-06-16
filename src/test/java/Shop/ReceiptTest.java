@@ -33,4 +33,10 @@ class ReceiptTest {
                 "Your discount is: 0.0%.\n" +
                 "Your price after discount: 644.98"));
     }
+
+    @Test
+    void receiptTest() {
+
+    }
+
 }
