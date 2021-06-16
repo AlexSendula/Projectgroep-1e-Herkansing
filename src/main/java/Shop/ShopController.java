@@ -51,16 +51,16 @@ public class ShopController implements Initializable {
     }
     @FXML
     void order(MouseEvent mouseEvent) throws IOException {
-        if (user.getShoppingCart().getProducts().size()>0) {
+        if (user.getShoppingCart().getProduct().size()>0) {
             new Receipt(user).writeReceipt(Receipt.receiptNumber());
             orderPlacedText.setVisible(true);
         }
-        user.getShoppingCart().getProducts().clear();
+        user.getShoppingCart().getProduct().clear();
     }
 
     @FXML
     void clearCart(MouseEvent mouseEvent)throws IOException {
-        user.getShoppingCart().getProducts().clear();
+        user.getShoppingCart().getProduct().clear();
         updateTotalPriceLabel();
     }
 

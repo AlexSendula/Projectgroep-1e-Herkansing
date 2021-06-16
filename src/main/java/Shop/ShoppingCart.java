@@ -1,27 +1,34 @@
 package Shop;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 
+@JsonIgnoreProperties
 public class ShoppingCart {
-    private ArrayList<Product> products;
+    @JsonProperty("product")
+    private ArrayList<Product> product;
+    @JsonProperty("totalPrice")
+    private double totalPrice;
 
     public ShoppingCart(){
-        this.products = new ArrayList<>();
+        this.product = new ArrayList<>();
     }
 
-    public ArrayList<Product> getProducts() {
-        return products;
+    public ArrayList<Product> getProduct() {
+        return product;
     }
 
     public void addToCart(Product product){
-        this.products.add(product);
+        this.product.add(product);
     }
 
     public double getTotalPrice(){
-        double totalPrice = 0;
-        for (int n = 0; n<this.getProducts().size(); n++){
-            totalPrice = totalPrice + this.getProducts().get(n).getPrice();
+        totalPrice = 0;
+        for (int n = 0; n<this.getProduct().size(); n++){
+            totalPrice = totalPrice + this.getProduct().get(n).getPrice();
         }
         return totalPrice;
     }

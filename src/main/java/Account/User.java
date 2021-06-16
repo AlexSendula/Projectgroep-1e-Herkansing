@@ -1,29 +1,61 @@
 package Account;
 
-import Rewards.Badge;
+import Rewards.*;
 import Rewards.Jobs.Job;
-import Rewards.NoBadge;
 import Shop.ShoppingCart;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 
 public class User {
+    @JsonProperty("firstname")
+    private String firstname;
+    @JsonProperty("lastname")
+    private String lastname;
+    @JsonProperty("date")
+    private String date;
+    @JsonProperty("username")
     private String username;
-    private Login login;
-    private ShoppingCart shoppingCart;
+    @JsonProperty("password")
+    private String password;
+    @JsonProperty("email")
+    private String email;
+    @JsonProperty("badge")
     private Badge badge;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Login login;
+    @JsonProperty("shoppingcart")
+    private ShoppingCart shoppingCart;
+    @JsonProperty("jobs")
     private ArrayList<Job> job;
 
-    public User(String username, String password){
-        this.badge = new NoBadge();
+    public User() {
         this.shoppingCart = new ShoppingCart();
+    }
+
+    public User(String firstname, String lastname, String date, String username, String password, String email) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.date = date;
         this.username = username;
-        this.login = Login.getInstance(this.username, password);
+        this.password = password;
+        this.email = email;
+        this.badge = new NoBadge();
         this.job = new ArrayList<>();
     }
 
     public String getUsername() {
         return this.username;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public String getEmail() {
+        return this.email;
     }
 
     public ShoppingCart getShoppingCart() {

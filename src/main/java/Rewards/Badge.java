@@ -1,6 +1,6 @@
 package Rewards;
 
-public abstract class Badge {
+public class Badge {
     protected String name;
     protected double discountPercentage;
 
