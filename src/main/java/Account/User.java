@@ -3,7 +3,6 @@ package Account;
 import Rewards.*;
 import Rewards.Jobs.Job;
 import Shop.ShoppingCart;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

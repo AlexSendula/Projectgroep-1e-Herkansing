@@ -40,7 +40,7 @@ public class CreateAccount {
                     data = data + scanner.nextLine() + "\n";
                 }
 
-                data = data.substring(0, data.length() - 3);
+                data = data.substring(0, data.length() - 2);
                 data = data + ", \n";
 
                 scanner.close();
