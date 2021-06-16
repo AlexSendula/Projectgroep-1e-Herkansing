@@ -12,6 +12,7 @@ public class ShoppingCart {
     private ArrayList<Product> product;
     @JsonProperty("totalPrice")
     private double totalPrice;
+    private CurrencyAdapterImpl currencyAdapterImpl = new CurrencyAdapterImpl();
 
     public ShoppingCart(){
         this.product = new ArrayList<>();
@@ -31,5 +32,9 @@ public class ShoppingCart {
             totalPrice = totalPrice + this.getProduct().get(n).getPrice();
         }
         return totalPrice;
+    }
+
+    public CurrencyAdapterImpl getCurrencyAdapterImpl() {
+        return currencyAdapterImpl;
     }
 }

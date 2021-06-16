@@ -34,6 +34,8 @@ public class ShopController implements Initializable {
     @FXML private TableColumn<Product, Double> priceColumn;
     @FXML private Label orderPlacedText;
     @FXML private Label totalPriceLabel;
+    @FXML private Label cartLabel;
+    @FXML private Button currencyButton;
     private ObservableList<Product> productList = FXCollections.observableArrayList();
 
 
@@ -62,6 +64,18 @@ public class ShopController implements Initializable {
         updateTotalPriceLabel();
     }
 
+    @FXML
+    void currencyChange(MouseEvent mouseEvent) throws IOException {
+        if (cartLabel.getText().contains("€")) {
+            cartLabel.setText("Cart: ");
+            currencyButton.setText("€");
+            totalPriceLabel.setText("" + user.getShoppingCart().getCurrencyAdapterImpl().getTotalPrice(user.getShoppingCart())+"$");
+        } else {
+            currencyButton.setText("$");
+            updateTotalPriceLabel();
+        }
+    }
+
 
     //IDK, but dont touch please.
     public ShopController() {
@@ -73,6 +87,7 @@ public class ShopController implements Initializable {
     }
 
     public void updateTotalPriceLabel(){
+        cartLabel.setText("Cart: €");
         totalPriceLabel.setText(String.valueOf(user.getShoppingCart().getTotalPrice()));
     }
 
@@ -80,7 +95,6 @@ public class ShopController implements Initializable {
     //Setting up tableview and populating with data
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         try {
             parseData();
         } catch ( Exception e) {
