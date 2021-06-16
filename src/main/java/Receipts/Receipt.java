@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 import static java.lang.Integer.parseInt;
@@ -28,7 +29,15 @@ public class Receipt {
         this.nameClient = activeUser.getUsername();
         this.discountPercentage = activeUser.getBadge().getDiscountPercentage();
         this.totalPrice = this.cart.getTotalPrice();
-        this.priceAfterDiscount = ((double) Math.round((totalPrice * (1.00 - discountPercentage / 100)) * 100))/100;
+//        this.priceAfterDiscount = ((double) Math.round((totalPrice * (1.00 - discountPercentage / 100)) * 100))/100;
+        this.priceAfterDiscount = getDiscountPrice(this.totalPrice, this.discountPercentage);
+    }
+
+    public double getDiscountPrice(double totalPrice, double discountPercentage) {
+        double discount = (100-discountPercentage) / 100;
+        double newPrice = totalPrice * (discount);
+
+        return newPrice;
     }
 
     public static int receiptNumber() {
@@ -60,7 +69,8 @@ public class Receipt {
             for (Product product : this.cart.getProduct()) {
                 text = text + product.getName() + ", ";
             }
-            text = text + "\nThe total price: " + this.totalPrice + ".\nYour discount is: " + discountPercentage + "%.\n" + "Your price after discount: " + this.priceAfterDiscount + ".";
+            DecimalFormat df = new DecimalFormat(".##");
+            text = text + "\nThe total price: " + this.totalPrice + ".\nYour discount is: " + discountPercentage + "%.\n" + "Your price after discount: " + df.format(this.priceAfterDiscount) + ".";
 
             text = text.substring(0, text.length() - 1);
             writer.write(text);

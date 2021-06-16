@@ -20,7 +20,10 @@ import javafx.scene.layout.AnchorPane;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.*;
+
+import static java.lang.Math.round;
 
 public class ShopController implements Initializable {
     private User user;
@@ -71,11 +74,17 @@ public class ShopController implements Initializable {
 
     public void initData(User activeUser) {
         user = activeUser;
+
         updateTotalPriceLabel();
     }
 
     public void updateTotalPriceLabel(){
-        totalPriceLabel.setText(String.valueOf(user.getShoppingCart().getTotalPrice()));
+        double originalPrice = user.getShoppingCart().getTotalPrice();
+        double discount = (100-user.getBadge().getDiscountPercentage()) / 100;
+        double newPrice = originalPrice * (discount);
+
+        DecimalFormat df = new DecimalFormat(".##");
+        totalPriceLabel.setText(String.valueOf(df.format(newPrice)));
     }
 
 

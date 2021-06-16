@@ -4,6 +4,7 @@ import Receipts.ReceiptController;
 import Rewards.RewardController;
 import Shop.ShopController;
 import Account.User;
+import Shop.ShoppingCart;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

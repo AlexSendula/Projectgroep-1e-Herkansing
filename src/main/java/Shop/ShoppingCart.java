@@ -1,6 +1,7 @@
 package Shop;
 
 
+import Account.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,6 +13,8 @@ public class ShoppingCart {
     private ArrayList<Product> product;
     @JsonProperty("totalPrice")
     private double totalPrice;
+
+    private User user;
 
     public ShoppingCart(){
         this.product = new ArrayList<>();
