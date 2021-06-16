@@ -72,7 +72,7 @@ public class ShopController implements Initializable {
         if (cartLabel.getText().contains("€")) {
             cartLabel.setText("Cart: ");
             currencyButton.setText("€");
-            totalPriceLabel.setText("" + user.getShoppingCart().getCurrencyAdapterImpl().getTotalPrice(user.getShoppingCart())+"$");
+            totalPriceLabel.setText("" + addDiscount(user.getShoppingCart().getCurrencyAdapterImpl().getTotalPrice(user.getShoppingCart()))+"$");
         } else {
             currencyButton.setText("$");
             updateTotalPriceLabel();
@@ -92,13 +92,14 @@ public class ShopController implements Initializable {
 
     public void updateTotalPriceLabel(){
         cartLabel.setText("Cart: €");
-        double originalPrice = user.getShoppingCart().getTotalPrice();
+        totalPriceLabel.setText(addDiscount(user.getShoppingCart().getTotalPrice()));
+    }
+
+    public String addDiscount(double originalPrice){
         double discount = (100-user.getBadge().getDiscountPercentage()) / 100;
         double newPrice = originalPrice * (discount);
-
         DecimalFormat df = new DecimalFormat(".##");
-        totalPriceLabel.setText(String.valueOf(df.format(newPrice)));
-        totalPriceLabel.setText(String.valueOf(user.getShoppingCart().getTotalPrice()));
+        return df.format(newPrice);
     }
 
 
