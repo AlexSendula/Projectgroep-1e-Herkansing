@@ -39,13 +39,13 @@ public class User {
         this.lastname = lastname;
     }
 
-    public User(String firstname, String lastname, String date, String username, String password, String email) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.date = date;
-        this.username = username;
-        this.password = password;
-        this.email = email;
+    public User(String[] userInformation){
+        this.firstname = userInformation[0];
+        this.lastname = userInformation[1];
+        this.date = userInformation[2];
+        this.username = userInformation[3];
+        this.password = userInformation[4];
+        this.email = userInformation[5];
         this.badge = new NoBadge();
         this.job = new ArrayList<>();
     }

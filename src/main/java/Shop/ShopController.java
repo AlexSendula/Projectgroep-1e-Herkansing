@@ -42,8 +42,6 @@ public class ShopController implements Initializable {
     void home(MouseEvent mouseEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeScreen.fxml"));
         AnchorPane root = loader.load();
-
-
         HomeController hC = loader.getController();
         hC.setActiveUser(user);
 
@@ -83,7 +81,6 @@ public class ShopController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //parseData();
         try {
             parseData();
         } catch ( Exception e) {
