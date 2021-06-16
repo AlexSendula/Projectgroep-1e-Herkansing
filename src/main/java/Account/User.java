@@ -3,10 +3,11 @@ package Account;
 import Rewards.*;
 import Rewards.Jobs.Job;
 import Shop.ShoppingCart;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class User {
     @JsonProperty("firstname")
@@ -23,20 +24,26 @@ public class User {
     private String email;
     @JsonProperty("badge")
     private Badge badge;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Login login;
+    @JsonProperty("shoppingcart")
     private ShoppingCart shoppingCart;
     @JsonProperty("jobs")
-    private ArrayList<Job> jobs;
+    private ArrayList<Job> job;
 
     public User() {
         this.shoppingCart = new ShoppingCart();
     }
 
-    public User(String username){
-        this.badge = new NoBadge();
-        this.shoppingCart = new ShoppingCart();
+    public User(String firstname, String lastname, String date, String username, String password, String email) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.date = date;
         this.username = username;
-        this.jobs = new ArrayList<>();
+        this.password = password;
+        this.email = email;
+        this.badge = new NoBadge();
+        this.job = new ArrayList<>();
     }
 
     public String getUsername() {
@@ -45,6 +52,10 @@ public class User {
 
     public String getPassword() {
         return this.password;
+    }
+
+    public String getEmail() {
+        return this.email;
     }
 
     public ShoppingCart getShoppingCart() {
@@ -60,10 +71,10 @@ public class User {
     }
 
     public void addJob(Job job){
-        this.jobs.add(job);
+        this.job.add(job);
     }
 
     public ArrayList<Job> getJob() {
-        return jobs;
+        return job;
     }
 }

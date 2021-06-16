@@ -12,10 +12,6 @@ public class Job {
 
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void addKnowledge(String knowledge){
         this.knowledge = knowledge;
     }
