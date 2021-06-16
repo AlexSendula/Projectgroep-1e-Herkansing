@@ -1,8 +1,4 @@
 [{"firstname":"Dylan","lastname":"van der Stam","date":"1998-10-18","username":"dylan","password":"123","email":"18094171@student.hhs.nl","badge":{"name":"Gold","discountPercentage":0.0},"shoppingcart":{"product":[],"totalPrice":0.0},"jobs":[{"name":"Pirate","knowledge":"No scope met zwaard"},{"name":"Carpenter","knowledge":"Hamer zwaaien"}]},{"firstname":"Alexandar","lastname":"Sendula","date":"1999-04-24","username":"alex","password":"321","email":"12346578@student.hhs.nl","badge":{"name":"Gold","discountPercentage":0.0},"shoppingcart":{"product":[],"totalPrice":0.0},"jobs":[{"name":"Police","knowledge":"Schiet die boy in zn nek"},{"name":"Baker","knowledge":"Bak die shit goed"}]},{"firstname":"1","lastname":"1","date":"2021-06-01","username":"1","password":"1","email":"1","badge":{"name":"Silver","discountPercentage":10.0},"shoppingcart":{"product":[],"totalPrice":0.0},"jobs":[{"name":"Dentist","knowledge":"dsa"},{"name":"Farmer","knowledge":"dsa"},
   {"name":"Doctor","knowledge":"dsa"},{"name":"Ranger","knowledge":"dsa"}]}, 
-{"firstname":"2","lastname":"2","date":"null","username":"2","password":"2","email":"2","badge":{"name":"None","discountPercentage":0.0},"shoppingcart":null,"jobs":[]}
- , 
-{"firstname":"Arman","lastname":"a","date":"2021-06-08","username":"Arman","password":"123","email":"123","badge":{"name":"None","discountPercentage":0.0},"shoppingcart":null,"jobs":[]}
- , 
-{"firstname":"asd","lastname":"asd","date":"null","username":"asd","password":"asd","email":"asd","badge":{"name":"None","discountPercentage":0.0},"shoppingcart":null,"jobs":[]}
+{"firstname":"2","lastname":"2","date":"null","username":"2","password":"2","email":"2","badge":{"name":"None","discountPercentage":0.0},"shoppingcart":{"product":[],"totalPrice":0.0},"jobs":[]}
  ]

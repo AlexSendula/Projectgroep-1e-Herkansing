@@ -47,6 +47,7 @@ public class User {
         this.password = userInformation[4];
         this.email = userInformation[5];
         this.badge = new NoBadge();
+        this.shoppingCart = new ShoppingCart();
         this.job = new ArrayList<>();
     }
 
