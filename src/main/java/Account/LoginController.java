@@ -38,7 +38,7 @@ public class LoginController implements Initializable {
     @FXML
     private Label incorrectText;
 
-    public void login(ActionEvent Event) throws IOException {
+    public void login(ActionEvent Event) throws Exception {
         User user = Login.checkData(usernameField.getText(),passwordField.getText(), userList);
         if (user != null) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeScreen.fxml"));
