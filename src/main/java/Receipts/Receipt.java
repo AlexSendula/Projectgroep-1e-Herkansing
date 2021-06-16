@@ -3,6 +3,8 @@ package Receipts;
 import Account.User;
 import Shop.Product;
 import Shop.ShoppingCart;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,8 +14,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
+@JsonIgnoreProperties
 public class Receipt {
     private String nameClient;
+    @JsonProperty("totalPrice")
     private double totalPrice;
     private double discountPercentage;
     public double priceAfterDiscount;
@@ -51,7 +55,18 @@ public class Receipt {
     public void writeReceipt(int receiptNumber) {
         try {
             FileWriter writer = new FileWriter("src/main/resources/Receipts/receipt" + receiptNumber + "-" + this.nameClient + ".txt");
+
+            String text = "Customer " + this.nameClient + " has purchased the following products:\n";
+            for (Product product : this.cart.getProduct()) {
+                text = text + product.getName() + ", ";
+            }
+            text = text + "\nThe total price: " + this.totalPrice + ".\nYour discount is: " + discountPercentage + "%.\n" + "Your price after discount: " + this.priceAfterDiscount + ".";
+
+            text = text.substring(0, text.length() - 1);
+            writer.write(text);
+
             writer.write(this.toString());
+
             writer.close();
         } catch (IOException exception) {
             exception.printStackTrace();
