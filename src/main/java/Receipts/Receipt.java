@@ -75,7 +75,7 @@ public class Receipt {
 
     @Override public String toString(){
         String text = "Customer " + this.nameClient + " has purchased the following products:\n";
-        for (Product product : this.cart.getProducts()) {
+        for (Product product : this.cart.getProduct()) {
             text = text + product.getName() + ", ";
         }
         text = text.substring(0, text.length() - 2)+".";

@@ -35,6 +35,11 @@ public class User {
         this.shoppingCart = new ShoppingCart();
     }
 
+    public User(String firstname, String lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
     public User(String firstname, String lastname, String date, String username, String password, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
