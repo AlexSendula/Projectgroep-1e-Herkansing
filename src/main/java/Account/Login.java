@@ -15,10 +15,11 @@ public class Login {
 
     private Login(){}
 
-    public static User checkData(String[] logInInfo, List<User> userList) {
+    public static Login checkData(String[] logInInfo, List<User> userList) {
         for(User user : userList) {
             if(user.getUsername().equals(logInInfo[0]) && user.getPassword().equals(logInInfo[1])) {
-                return user;
+                single_instance = new Login();
+                return single_instance;
             }
         }
         return null;

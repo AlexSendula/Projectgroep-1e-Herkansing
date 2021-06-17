@@ -28,6 +28,7 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
     private ArrayList<User> userList;
     private ArrayList<Badge> badges = new ArrayList<>();
+    private User user;
 
     @FXML
     private AnchorPane rootPane;
@@ -40,11 +41,16 @@ public class LoginController implements Initializable {
 
     public void login(ActionEvent Event) throws IOException {
         String[] loginData = {usernameField.getText(),passwordField.getText()};
-        User user = Login.checkData(loginData, userList);
-        if (user != null) {
+        if (Login.checkData(loginData, userList) != null) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeScreen.fxml"));
             AnchorPane root = loader.load();
             HomeController hC = loader.getController();
+
+            for(User u : userList) {
+                if(u.getUsername().equals(loginData[0]) && u.getPassword().equals(loginData[1])) {
+                    user = u;
+                }
+            }
 
             for(Badge b : badges){
                 if(user.getBadge().getName().equals(b.getName())) {
