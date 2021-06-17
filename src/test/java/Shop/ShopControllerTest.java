@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ShopControllerTest {
-    User user = new User("test", "test");
+    String[] userInfo = {"","","","test","test","@"};
+    User user = new User(userInfo);
     ShopController shop = new ShopController();
 
     //De totaalprijs van de bon komt overeen met de totaalprijs van de items in de winkelwagen.
@@ -111,7 +112,7 @@ public class ShopControllerTest {
             assertEquals(6, String.valueOf(product.getId()).length());
             assertTrue(product.getName().length() > 2);
             assertTrue(product.getDescription().length() > 5);
-            assertTrue(product.getPrice() > 0 && product.getPrice() < 50);
+            assertTrue(product.getPrice() > 0 && product.getPrice() < 700);
             assertTrue(product.getStock() < 500);
             assertNotNull(product.getCategories());
         }
