@@ -37,6 +37,8 @@ public class ShopController implements Initializable {
     @FXML private TableColumn<Product, Double> priceColumn;
     @FXML private Label orderPlacedText;
     @FXML private Label totalPriceLabel;
+    @FXML private Label cartLabel;
+    @FXML private Button currencyButton;
     private ObservableList<Product> productList = FXCollections.observableArrayList();
 
 
@@ -45,8 +47,6 @@ public class ShopController implements Initializable {
     void home(MouseEvent mouseEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HomeScreen.fxml"));
         AnchorPane root = loader.load();
-
-
         HomeController hC = loader.getController();
         hC.setActiveUser(user);
 
@@ -67,6 +67,18 @@ public class ShopController implements Initializable {
         updateTotalPriceLabel();
     }
 
+    @FXML
+    void currencyChange(MouseEvent mouseEvent) throws IOException {
+        if (cartLabel.getText().contains("€")) {
+            cartLabel.setText("Cart: ");
+            currencyButton.setText("€");
+            totalPriceLabel.setText("" + addDiscount(user.getShoppingCart().getCurrencyAdapterImpl().getTotalPrice(user.getShoppingCart()))+"$");
+        } else {
+            currencyButton.setText("$");
+            updateTotalPriceLabel();
+        }
+    }
+
 
     //IDK, but dont touch please.
     public ShopController() {
@@ -79,20 +91,21 @@ public class ShopController implements Initializable {
     }
 
     public void updateTotalPriceLabel(){
-        double originalPrice = user.getShoppingCart().getTotalPrice();
+        cartLabel.setText("Cart: €");
+        totalPriceLabel.setText(addDiscount(user.getShoppingCart().getTotalPrice()));
+    }
+
+    public String addDiscount(double originalPrice){
         double discount = (100-user.getBadge().getDiscountPercentage()) / 100;
         double newPrice = originalPrice * (discount);
-
         DecimalFormat df = new DecimalFormat(".##");
-        totalPriceLabel.setText(String.valueOf(df.format(newPrice)));
+        return df.format(newPrice);
     }
 
 
     //Setting up tableview and populating with data
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        //parseData();
         try {
             parseData();
         } catch ( Exception e) {
