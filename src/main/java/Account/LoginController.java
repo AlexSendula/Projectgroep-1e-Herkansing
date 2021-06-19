@@ -10,12 +10,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -62,7 +62,7 @@ public class LoginController implements Initializable {
             rootPane.getChildren().setAll(root);
         } else {
             Notification wrong = new WrongCombination();
-            incorrectText.setText(wrong.showNotification());
+            incorrectText.setText(wrong.notification(incorrectText));
             incorrectText.setVisible(true);
         }
     }

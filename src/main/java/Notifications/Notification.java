@@ -1,9 +1,18 @@
 package Notifications;
 
-public abstract class Notification {
-    abstract String printNotification();
+import java.awt.*;
 
-    public final String showNotification() {
-        return printNotification();
+public abstract class Notification {
+    public final String notification(Label label) {
+        if (!inputError()) {
+            label.setText(null);
+        }
+        label.setText(this.getNotification());
+        return null;
     }
+
+    abstract String getNotification();
+
+    boolean inputError() { return false; }
 }
+
