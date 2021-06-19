@@ -1,6 +1,6 @@
 package Notifications;
 
-import java.awt.*;
+import javafx.scene.control.Label;
 
 public abstract class Notification {
     public final String notification(Label label) {
