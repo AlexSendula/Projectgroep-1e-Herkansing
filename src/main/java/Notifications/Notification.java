@@ -5,10 +5,9 @@ import javafx.scene.control.Label;
 public abstract class Notification {
     public final String notification(Label label) {
         if (!inputError()) {
-            label.setText(null);
+            return null;
         }
-        label.setText(this.getNotification());
-        return null;
+        return this.getNotification();
     }
 
     abstract String getNotification();
