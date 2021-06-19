@@ -63,7 +63,7 @@ public class LoginController implements Initializable {
             rootPane.getChildren().setAll(root);
         } else {
             Notification wrong = new WrongCombination();
-            incorrectText.setText(wrong.notification(incorrectText));
+            incorrectText.setText(wrong.notification());
             incorrectText.setVisible(true);
         }
     }

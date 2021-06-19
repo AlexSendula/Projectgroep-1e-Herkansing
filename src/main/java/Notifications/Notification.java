@@ -1,9 +1,7 @@
 package Notifications;
 
-import javafx.scene.control.Label;
-
 public abstract class Notification {
-    public final String notification(Label label) {
+    public final String notification() {
         if (!inputError()) {
             return null;
         }

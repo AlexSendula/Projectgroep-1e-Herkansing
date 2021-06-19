@@ -59,7 +59,7 @@ public class CreateAccountController implements Initializable {
             rootPane.getChildren().setAll(pane);
         } else {
             Notification notCorrect = new MissingOrWrongFields();
-            incorrectLabel.setText(notCorrect.notification(incorrectLabel));
+            incorrectLabel.setText(notCorrect.notification());
             incorrectLabel.setVisible(true);
         }
     }
